@@ -1,0 +1,19 @@
+{
+  "name": "KABAMBA KASONGO — Full-Stack Developer",
+  "short_name": "KK Portfolio",
+  "description": "Portfolio de KABAMBA KASONGO, développeur Full-Stack : applications web, plateformes SaaS et solutions digitales.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a0b0d",
+  "theme_color": "#0a0b0d",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#12141a" />
+      <stop offset="100%" stop-color="#0a0b0d" />
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff7a45" />
+      <stop offset="55%" stop-color="#ffb020" />
+      <stop offset="100%" stop-color="#4fd6c5" />
+    </linearGradient>
+    <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.6" fill="#ffffff" fill-opacity="0.1" />
+    </pattern>
+    <radialGradient id="glow" cx="0.75" cy="0.2" r="0.75">
+      <stop offset="0%" stop-color="#ff7a45" stop-opacity="0.32" />
+      <stop offset="100%" stop-color="#ff7a45" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#dots)" />
+  <rect width="1200" height="630" fill="url(#glow)" />
+
+  <g transform="translate(80 130)">
+    <rect width="96" height="96" rx="24" fill="url(#brand)" />
+    <g stroke="#140b06" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M27 26v44" />
+      <path d="M27 48l16-16M27 48l16 16" />
+      <path d="M64 26v44" />
+      <path d="M64 48l16-16M64 48l16 16" />
+    </g>
+  </g>
+
+  <text
+    x="80"
+    y="330"
+    font-family="'Space Grotesk', 'Segoe UI', Arial, sans-serif"
+    font-size="82"
+    font-weight="700"
+    letter-spacing="2"
+    fill="#eceef1"
+  >KABAMBA</text>
+  <text
+    x="80"
+    y="420"
+    font-family="'Space Grotesk', 'Segoe UI', Arial, sans-serif"
+    font-size="82"
+    font-weight="700"
+    letter-spacing="2"
+    fill="url(#brand)"
+  >KASONGO</text>
+
+  <text
+    x="84"
+    y="490"
+    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-size="28"
+    letter-spacing="6"
+    fill="#a2a8b2"
+  >FULL-STACK DEVELOPER</text>
+
+  <text
+    x="84"
+    y="540"
+    font-family="'Segoe UI', Arial, sans-serif"
+    font-size="24"
+    fill="#767d88"
+  >Applications web · Plateformes SaaS · Solutions digitales</text>
+
+  <g transform="translate(900 480)">
+    <rect x="0" y="0" width="220" height="46" rx="23" fill="none" stroke="#ffffff" stroke-opacity="0.18" />
+    <text
+      x="110"
+      y="30"
+      text-anchor="middle"
+      font-family="'JetBrains Mono', 'Courier New', monospace"
+      font-size="19"
+      letter-spacing="3"
+      fill="#a2a8b2"
+    >KOLWEZI · RDC</text>
+  </g>
+</svg>

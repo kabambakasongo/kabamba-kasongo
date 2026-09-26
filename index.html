@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="fr" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta name="theme-color" content="#0A0B0D" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#F6F6F3" media="(prefers-color-scheme: light)" />
+
+    <title>KABAMBA KASONGO | Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Portfolio de KABAMBA KASONGO, developpeur Full-Stack specialise dans la creation d'applications web, plateformes SaaS et solutions digitales modernes."
+    />
+    <meta
+      name="keywords"
+      content="KABAMBA KASONGO, developpeur Full-Stack, React, TypeScript, Django, Python, SaaS, application web, Kolwezi, RDC, portfolio, developpeur web"
+    />
+    <meta name="author" content="KABAMBA KASONGO" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="French" />
+    <!--
+      Le jeton __SITE_URL__ est remplace au build par l'URL publique reelle
+      (scripts/inject-seo.mjs, via la variable SITE_URL). Aucune URL n'est
+      ecrite en dur : le meme jeton alimente le canonical, l'Open Graph, le
+      Twitter Card et le JSON-LD.
+    -->
+    <link rel="canonical" href="__SITE_URL__" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KABAMBA KASONGO" />
+    <meta property="og:title" content="KABAMBA KASONGO | Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Developpeur Full-Stack : applications web, plateformes SaaS et solutions digitales modernes."
+    />
+    <meta property="og:url" content="__SITE_URL__" />
+    <meta property="og:image" content="__SITE_URL__og-image.svg" />
+    <meta property="og:image:alt" content="KABAMBA KASONGO - Full-Stack Developer" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KABAMBA KASONGO | Full-Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Developpeur Full-Stack : applications web, plateformes SaaS et solutions digitales modernes."
+    />
+    <meta name="twitter:image" content="__SITE_URL__og-image.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      />
+    </noscript>
+
+    <!--
+      Donnees structurees Schema.org. Renseignez `sameAs` avec vos profils
+      sociaux reels (une URL par profil) ; laissez le tableau vide tant que
+      vous n'avez pas ajoute de lien dans src/config/profile.ts.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "KABAMBA KASONGO",
+        "url": "__SITE_URL__",
+        "image": "__SITE_URL__og-image.svg",
+        "jobTitle": "Full-Stack Developer",
+        "description": "Developpeur Full-Stack specialise dans la creation d'applications web, de plateformes SaaS et de solutions digitales modernes.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Kolwezi",
+          "addressCountry": "CD"
+        },
+        "knowsAbout": [
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "Python",
+          "Django",
+          "PostgreSQL",
+          "Tailwind CSS",
+          "PyQt6",
+          "PySide6",
+          "Docker",
+          "REST API"
+        ],
+        "sameAs": []
+      }
+    </script>
+
+    <script>
+      // Applique le theme avant le premier rendu pour eviter tout flash.
+      // Le portfolio est sombre par defaut : le mode clair n'est applique
+      // que si l'utilisateur l'a choisi precedemment.
+      (function () {
+        var light = false;
+        try {
+          light = localStorage.getItem('kk-theme') === 'light';
+        } catch (e) {
+          light = false;
+        }
+        document.documentElement.classList.toggle('dark', !light);
+      })();
+    </script>
+    <noscript>
+      <style>
+        /* Sans JavaScript, les elements d'apparition progressive restent visibles. */
+        [style*='opacity:0'] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui; color: #e9eaec; background: #0a0b0d">
+        <h1>KABAMBA KASONGO â€” Full-Stack Developer</h1>
+        <p>
+          Ce portfolio necessite JavaScript. Merci de l'activer dans votre navigateur pour consulter
+          l'ensemble de mes projets et competences.
+        </p>
+      </div>
+    </noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
