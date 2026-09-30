@@ -139,66 +139,83 @@
     <!-- ====================================================================
          NAVIGATION
          ==================================================================== -->
-    <header id="site-header" class="fixed-top">
-      <nav class="container-page d-flex align-items-center" style="height: 4.5rem" aria-label="Navigation principale">
-        <a href="#top" class="d-flex align-items-center gap-2 text-decoration-none" aria-label="KABAMBA KASONGO — retour en haut">
-          <span
-            class="d-grid place-items-center flex-shrink-0 font-display fw-bold"
-            style="width: 2.25rem; height: 2.25rem; border-radius: 0.7rem; font-size: 0.85rem; color: var(--brand-contrast); background: var(--brand)"
-            >KK</span
-          >
-          <span class="font-display fw-semibold d-none d-sm-inline" style="font-size: 0.9rem; color: var(--ink)"
-            >KABAMBA KASONGO</span
-          >
-        </a>
+    <header id="site-header" class="site-header">
+      <div class="container-page site-header__shell">
+        <nav class="site-header__island" aria-label="Navigation principale">
+          <a href="#top" class="brand" aria-label="KABAMBA KASONGO — retour en haut">
+            <span class="brand__mark font-display fw-bold" aria-hidden="true">KK</span>
+            <span class="brand__name font-display fw-semibold d-none d-sm-inline">KABAMBA KASONGO</span>
+          </a>
 
-        <ul class="d-none d-lg-flex align-items-center gap-1 ms-auto me-3">
-          <li><a class="nav-link-kk" href="#apropos" data-nav>À propos</a></li>
-          <li><a class="nav-link-kk" href="#competences" data-nav>Compétences</a></li>
-          <li><a class="nav-link-kk" href="#projets" data-nav>Projets</a></li>
-          <li><a class="nav-link-kk" href="#services" data-nav>Services</a></li>
-          <li><a class="nav-link-kk" href="#parcours" data-nav>Parcours</a></li>
-          <li><a class="nav-link-kk" href="#process" data-nav>Process</a></li>
-          <li><a class="nav-link-kk" href="#github" data-nav>GitHub</a></li>
-        </ul>
+          <div class="nav-desktop" data-nav-list>
+            <ul class="nav-desktop__list list-unstyled mb-0">
+              <li><a class="nav-link-kk" href="#apropos" data-nav>À propos</a></li>
+              <li><a class="nav-link-kk" href="#competences" data-nav>Compétences</a></li>
+              <li><a class="nav-link-kk" href="#projets" data-nav>Projets</a></li>
+              <li><a class="nav-link-kk" href="#services" data-nav>Services</a></li>
+              <li><a class="nav-link-kk" href="#parcours" data-nav>Parcours</a></li>
+              <li><a class="nav-link-kk" href="#process" data-nav>Process</a></li>
+              <li><a class="nav-link-kk" href="#github" data-nav>GitHub</a></li>
+            </ul>
+            <span class="nav-indicator" data-nav-indicator aria-hidden="true"></span>
+          </div>
 
-        <div class="d-flex align-items-center gap-2 ms-auto ms-lg-0">
-          <button
-            type="button"
-            class="icon-btn"
-            id="theme-toggle"
-            aria-label="Changer de thème"
-            title="Changer de thème"
-          >
-            <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
-          </button>
+          <div class="site-header__actions">
+            <button
+              type="button"
+              class="icon-btn"
+              id="theme-toggle"
+              aria-label="Changer de thème"
+              title="Changer de thème"
+            >
+              <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
+            </button>
 
-          <a href="mailto:ledouxkabamba135@gmail.com" class="btn btn-primary btn-sm d-none d-sm-inline-flex">Me contacter</a>
+            <a href="mailto:ledouxkabamba135@gmail.com" class="btn btn-primary btn-sm header-cta d-none d-sm-inline-flex">
+              Me contacter <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+            </a>
 
-          <button
-            type="button"
-            class="navbar-toggler d-lg-none"
-            id="nav-toggle"
-            aria-expanded="false"
-            aria-controls="mobile-menu"
-            aria-label="Ouvrir le menu"
-          >
-            <i class="bi bi-list" data-nav-icon aria-hidden="true"></i>
-          </button>
+            <button
+              type="button"
+              class="navbar-toggler d-lg-none"
+              id="nav-toggle"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+              aria-label="Ouvrir le menu"
+            >
+              <i class="bi bi-list" data-nav-icon aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <span class="nav-progress" data-nav-progress aria-hidden="true"></span>
+        </nav>
+
+        <div id="mobile-menu" class="menu-mobile d-lg-none" data-open="false">
+          <ul class="menu-mobile__list list-unstyled mb-0">
+            <li><a class="nav-link-kk" href="#apropos" data-nav><span class="nav-index font-mono">01</span> À propos</a></li>
+            <li><a class="nav-link-kk" href="#competences" data-nav><span class="nav-index font-mono">02</span> Compétences</a></li>
+            <li><a class="nav-link-kk" href="#projets" data-nav><span class="nav-index font-mono">03</span> Projets</a></li>
+            <li><a class="nav-link-kk" href="#services" data-nav><span class="nav-index font-mono">04</span> Services</a></li>
+            <li><a class="nav-link-kk" href="#parcours" data-nav><span class="nav-index font-mono">05</span> Parcours</a></li>
+            <li><a class="nav-link-kk" href="#process" data-nav><span class="nav-index font-mono">06</span> Process</a></li>
+            <li><a class="nav-link-kk" href="#github" data-nav><span class="nav-index font-mono">07</span> GitHub</a></li>
+            <li><a class="nav-link-kk" href="#contact" data-nav><span class="nav-index font-mono">08</span> Contact</a></li>
+          </ul>
+
+          <div class="menu-mobile__foot">
+            <a href="mailto:ledouxkabamba135@gmail.com" class="btn btn-primary w-100">
+              Me contacter <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+            </a>
+            <div class="menu-mobile__meta">
+              <a class="icon-btn" href="https://github.com/kabambakasongo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><i class="bi bi-github" aria-hidden="true"></i></a>
+              <a class="icon-btn" href="https://linkedin.com/in/ledoux-kabamba-7b773a319" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+              <p class="d-flex align-items-center gap-2 mb-0 ms-1">
+                <span class="dot-live" aria-hidden="true"></span>
+                <span class="text-subtle">Disponible pour de nouvelles missions</span>
+              </p>
+            </div>
+          </div>
         </div>
-      </nav>
-
-      <div id="mobile-menu" class="menu-mobile glass-strong d-lg-none" hidden>
-        <ul class="container-page list-unstyled d-flex flex-column gap-1 py-3 mb-0">
-          <li><a class="nav-link-kk" href="#apropos" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">01</span> À propos</a></li>
-          <li><a class="nav-link-kk" href="#competences" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">02</span> Compétences</a></li>
-          <li><a class="nav-link-kk" href="#projets" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">03</span> Projets</a></li>
-          <li><a class="nav-link-kk" href="#services" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">04</span> Services</a></li>
-          <li><a class="nav-link-kk" href="#parcours" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">05</span> Parcours</a></li>
-          <li><a class="nav-link-kk" href="#process" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">06</span> Process</a></li>
-          <li><a class="nav-link-kk" href="#github" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">07</span> GitHub</a></li>
-          <li><a class="nav-link-kk" href="#contact" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">08</span> Contact</a></li>
-        </ul>
       </div>
     </header>
 
@@ -1255,7 +1272,7 @@
                     <span class="skill-icon flex-shrink-0"><i class="bi bi-envelope" aria-hidden="true"></i></span>
                     <span class="min-w-0">
                       <span class="d-block text-subtle" style="font-size: 0.75rem">E-mail</span>
-                      <span class="d-block text-truncate" style="color: var(--ink); font-size: 0.9rem">ledouxkabamba135@gmail.com</span>
+                      <span class="d-block text-wrap-anywhere" style="color: var(--ink); font-size: 0.9rem">ledouxkabamba135@gmail.com</span>
                     </span>
                   </a>
 
@@ -1279,7 +1296,7 @@
                     <span class="skill-icon flex-shrink-0"><i class="bi bi-linkedin" aria-hidden="true"></i></span>
                     <span class="min-w-0">
                       <span class="d-block text-subtle" style="font-size: 0.75rem">LinkedIn</span>
-                      <span class="d-block text-truncate" style="color: var(--ink); font-size: 0.9rem">/in/ledoux-kabamba</span>
+                      <span class="d-block text-wrap-anywhere" style="color: var(--ink); font-size: 0.9rem">/in/ledoux-kabamba</span>
                     </span>
                   </a>
 
@@ -1336,7 +1353,7 @@
 
           <div class="col-6 col-lg-3">
             <p class="eyebrow mb-3">Navigation</p>
-            <ul class="list-unstyled d-grid gap-2 mb-0" style="font-size: 0.88rem">
+            <ul class="footer-nav list-unstyled d-grid mb-0" style="font-size: 0.88rem">
               <li><a class="text-decoration-none text-muted-2" href="#apropos">À propos</a></li>
               <li><a class="text-decoration-none text-muted-2" href="#competences">Compétences</a></li>
               <li><a class="text-decoration-none text-muted-2" href="#projets">Projets</a></li>

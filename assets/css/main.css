@@ -143,6 +143,11 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 6.5rem;
   -webkit-text-size-adjust: 100%;
+  /* `clip` et non `hidden` : la rangée du hero et le rotator debordent
+     de quelques pixels, ce qui elargissait le viewport de mise en page et
+     decalait la barre en `position: fixed`. `clip` borne le debordement
+     sans transformer <html> en conteneur de defilement. */
+  overflow-x: clip;
 }
 
 body {
@@ -264,22 +269,25 @@ p {
 
 /* --- Mise en page ------------------------------------------------------- */
 
+/* La gouttire est une variable : la feuille mobile, positionnee en absolu
+   dans cette meme boite, doit pouvoir la reprendre pour rester alignee. */
 .container-page {
+  --gutter: 1.25rem;
   width: 100%;
   margin-inline: auto;
   max-width: 78rem;
-  padding-inline: 1.25rem;
+  padding-inline: var(--gutter);
 }
 
 @media (min-width: 768px) {
   .container-page {
-    padding-inline: 2rem;
+    --gutter: 2rem;
   }
 }
 
 @media (min-width: 1280px) {
   .container-page {
-    padding-inline: 2.5rem;
+    --gutter: 2.5rem;
   }
 }
 
@@ -379,48 +387,239 @@ p {
 
 /* --- Navigation --------------------------------------------------------- */
 
+/* La barre est un « island » : une capsule de verre posee sous le bord
+   superieur qui se densifie et se retracte des le premier pixel de scroll. */
+
+.site-header {
+  --nav-h: 4.25rem;
+  --nav-inset: 0.75rem;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  padding-top: env(safe-area-inset-top, 0px);
+  transition: padding-top 0.3s ease;
+}
+
+.site-header__shell {
+  position: relative;
+  padding-top: var(--nav-inset);
+}
+
+.site-header__island {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 'brand actions';
+  align-items: center;
+  gap: 0 0.75rem;
+  min-height: var(--nav-h);
+  padding: 0.5rem 0.6rem 0.5rem 0.7rem;
+  border: 1px solid transparent;
+  border-radius: 1.25rem;
+  color: var(--ink);
+  background-color: transparent;
+  transition:
+    min-height 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    padding 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    backdrop-filter 0.35s ease;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .site-header.is-scrolled .site-header__island {
+    background-color: color-mix(in oklab, var(--canvas) 72%, transparent);
+    -webkit-backdrop-filter: blur(18px) saturate(170%);
+    backdrop-filter: blur(18px) saturate(170%);
+  }
+}
+
+.site-header.is-scrolled .site-header__island {
+  border-color: var(--line);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, var(--ink) 6%, transparent) inset,
+    0 18px 40px -24px rgb(0 0 0 / 0.45);
+}
+
+.site-header.is-scrolled {
+  --nav-h: 3.75rem;
+  --nav-inset: 0.5rem;
+}
+
+/* Sans JavaScript l'indicateur et la barre de progression n'ont aucun
+   sens : on les retire du rendu. */
+html:not(.js) .nav-indicator,
+html:not(.js) .nav-progress {
+  display: none;
+}
+
+/* --- Marque -------------------------------------------------------------- */
+
+.brand {
+  grid-area: brand;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.brand__mark {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.7rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--brand-contrast);
+  background: var(--brand);
+  box-shadow: 0 8px 20px -12px color-mix(in oklab, var(--brand) 80%, transparent);
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.brand:hover .brand__mark,
+.brand:focus-visible .brand__mark {
+  transform: rotate(-6deg) scale(1.06);
+  box-shadow: 0 12px 26px -12px color-mix(in oklab, var(--brand) 90%, transparent);
+}
+
+.brand__name {
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+/* --- Liens (desktop) ----------------------------------------------------- */
+
+/* Le conteneur ne sert que de repere : il masque la rangée sous 992 px et
+   ancre la pastille, dont les offsets sont mesures sur cette meme boite. */
+.nav-desktop {
+  grid-area: nav;
+  display: none;
+  position: relative;
+  min-width: 0;
+}
+
+.nav-desktop__list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+}
+
 .nav-link-kk {
   position: relative;
+  display: inline-flex;
+  align-items: center;
   border-radius: 999px;
-  padding: 0.5rem 0.9rem;
-  font-size: 0.9rem;
+  padding: 0.45rem 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--ink-muted);
   text-decoration: none;
-  transition: color 0.3s ease;
+  white-space: nowrap;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease;
 }
 
 .nav-link-kk:hover,
 .nav-link-kk:focus-visible {
   color: var(--ink);
+  background-color: color-mix(in oklab, var(--ink) 6%, transparent);
 }
 
 .nav-link-kk.is-active {
   color: var(--brand);
+  background-color: transparent;
+}
+
+.nav-link-kk.is-active:hover,
+.nav-link-kk.is-active:focus-visible {
+  color: var(--brand-strong);
+  background-color: color-mix(in oklab, var(--ink) 6%, transparent);
+}
+
+/* Pastille partagee : un seul element glisse sous le lien actif, ce qui
+   supprime le clignotement du fond a chaque changement de section.
+   Le JS ne pose que --x / --w, la transformation reste en CSS. */
+.nav-indicator {
+  --x: 0px;
+  --w: 0px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: var(--w);
+  height: 2.1rem;
+  border-radius: 999px;
   background-color: var(--brand-soft);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--brand) 22%, transparent);
+  transform: translateY(-50%) translateX(var(--x));
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
 }
 
-.menu-mobile a.nav-link-kk {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  border-radius: 0.85rem;
-  padding: 0.8rem 1rem;
-  font-size: 1rem;
+.nav-indicator.is-visible {
+  opacity: 1;
 }
 
-.menu-mobile a.nav-link-kk:hover {
-  background-color: var(--surface-2);
-  color: var(--ink);
+@media (min-width: 992px) {
+  .site-header__island {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-areas: 'brand nav actions';
+    gap: 0 1rem;
+    padding: 0.4rem 0.55rem 0.4rem 0.7rem;
+  }
+
+  .nav-desktop {
+    display: block;
+  }
+
+  .site-header__actions {
+    grid-area: actions;
+    justify-self: end;
+  }
+
+  .site-header.is-scrolled .site-header__island {
+    padding-inline: 0.55rem 0.5rem;
+  }
 }
 
-.menu-mobile {
-  max-height: calc(100dvh - 4rem);
-  overflow-y: auto;
+/* Entre 992 et 1280 px la place manque : on condense au lieu de deborder. */
+@media (min-width: 992px) and (max-width: 1279.98px) {
+  .brand__name {
+    display: none;
+  }
+
+  .nav-desktop__list {
+    gap: 0;
+  }
+
+  .nav-link-kk {
+    padding-inline: 0.5rem;
+    font-size: 0.8rem;
+  }
 }
+
+/* --- Actions ------------------------------------------------------------- */
 
 .icon-btn {
   display: grid;
   place-items: center;
+  flex-shrink: 0;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 999px;
@@ -439,16 +638,272 @@ p {
   transform: translateY(-2px);
 }
 
+.site-header__actions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 0.4rem;
+}
+
+.header-cta {
+  white-space: nowrap;
+}
+
+.header-cta .bi {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.header-cta:hover .bi,
+.header-cta:focus-visible .bi {
+  transform: translate(2px, -2px);
+}
+
+#theme-toggle [data-theme-icon] {
+  display: block;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+}
+
+#theme-toggle:hover [data-theme-icon] {
+  transform: rotate(-18deg) scale(1.12);
+}
+
+#theme-toggle.is-swapping [data-theme-icon] {
+  transform: rotate(180deg) scale(0.6);
+  opacity: 0;
+}
+
 .navbar-toggler {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
   border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 0.4rem 0.6rem;
+  padding: 0;
+  font-size: 1.05rem;
   color: var(--ink);
   background-color: color-mix(in oklab, var(--surface-2) 70%, transparent);
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.navbar-toggler:hover {
+  border-color: color-mix(in oklab, var(--brand) 50%, var(--line));
+  color: var(--brand);
 }
 
 .navbar-toggler:focus {
   box-shadow: none;
+}
+
+.navbar-toggler [data-nav-icon] {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+}
+
+.navbar-toggler[aria-expanded='true'] {
+  border-color: color-mix(in oklab, var(--brand) 55%, var(--line));
+  color: var(--brand);
+  background-color: var(--brand-soft);
+}
+
+.navbar-toggler[aria-expanded='true'] [data-nav-icon] {
+  transform: rotate(90deg);
+}
+
+/* Au doigt les deux controles de l'en-tete gagnent 4 px pour rester
+   franches, et l'island se retarde d'autant pour ne pas les tasser. */
+@media (pointer: coarse) {
+  .site-header {
+    --nav-h: 4rem;
+  }
+
+  .site-header__actions .icon-btn,
+  .site-header__actions .navbar-toggler,
+  .menu-mobile__meta .icon-btn {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/* --- Barre de progression ------------------------------------------------ */
+
+.nav-progress {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-image: linear-gradient(90deg, var(--brand), var(--accent));
+  transform: scaleX(var(--nav-progress, 0));
+  transform-origin: left center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.site-header.is-scrolled .nav-progress {
+  opacity: 1;
+}
+
+/* --- Menu mobile --------------------------------------------------------- */
+
+/* Les bords reprennent la gouttiere du conteneur : la feuille prolonge
+   exactement la largeur de l'island, sans deborder sur la page. */
+.menu-mobile {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: var(--gutter);
+  left: var(--gutter);
+  max-height: calc(100dvh - 6rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  background-color: color-mix(in oklab, var(--canvas) 94%, transparent);
+  box-shadow: 0 40px 80px -40px rgb(0 0 0 / 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-0.75rem) scale(0.985);
+  transform-origin: top center;
+  transition:
+    opacity 0.28s ease,
+    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s linear 0.34s;
+}
+
+@supports (backdrop-filter: blur(1px)) {
+  .menu-mobile {
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    backdrop-filter: blur(22px) saturate(170%);
+  }
+}
+
+.menu-mobile[data-open='true'] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition:
+    opacity 0.28s ease,
+    transform 0.34s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0s;
+}
+
+.menu-mobile__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.menu-mobile__list li {
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-mobile[data-open='true'] .menu-mobile__list li {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(var(--i, 0) * 26ms + 40ms);
+}
+
+.menu-mobile a.nav-link-kk {
+  gap: 0.9rem;
+  border-radius: 0.9rem;
+  padding: 0.8rem 0.9rem;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.nav-index {
+  min-width: 1.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-subtle);
+  transition: color 0.25s ease;
+}
+
+.menu-mobile a.nav-link-kk.is-active {
+  background-color: var(--brand-soft);
+}
+
+.menu-mobile a.nav-link-kk.is-active .nav-index {
+  color: var(--brand);
+}
+
+.menu-mobile__foot {
+  margin-top: 0.6rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--line);
+  opacity: 0;
+  transform: translateY(0.5rem);
+  transition:
+    opacity 0.3s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-mobile[data-open='true'] .menu-mobile__foot {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.24s;
+}
+
+.menu-mobile__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+
+.menu-mobile__meta .icon-btn {
+  width: 2.15rem;
+  height: 2.15rem;
+}
+
+.menu-mobile__meta .icon-btn .bi {
+  font-size: 0.95rem;
+}
+
+/* Verrou de defilement : la gouttiere est reservee en permanence pour
+   eviter tout saut de mise en page, compensation JS en secours. */
+html {
+  scrollbar-gutter: stable;
+}
+
+body.nav-open {
+  overflow: hidden;
+  padding-right: var(--nav-scrollbar, 0px);
+}
+
+/* Sans JavaScript le menu reste unfolded : on neutralise le bouton. */
+html:not(.js) .navbar-toggler {
+  display: none;
+}
+
+html:not(.js) .menu-mobile {
+  position: static;
+  max-height: none;
+  margin: 0.5rem 0 0;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+html:not(.js) .menu-mobile__list li,
+html:not(.js) .menu-mobile__foot {
+  opacity: 1;
+  transform: none;
 }
 
 /* --- Boutons ------------------------------------------------------------ */
@@ -973,6 +1428,37 @@ p {
 
 /* --- Pied de page ------------------------------------------------------- */
 
+/* Les liens de navigation du footer sont du texte de 17 px : trop petit
+   pour le doigt. En passant le lien en `block` on lui rend son line-height
+   (21,1 px) puis on comble les 2 px manquants par un remplissage de 1 px
+   de chaque cote : la zone cliquable atteint 25 px — le minimum AA — et
+   l'interligne d'origine est conserve. */
+.footer-nav a {
+  display: block;
+  padding-block: 0.125rem;
+  border-radius: 0.4rem;
+  transition: color 0.25s ease;
+}
+
+/* `text-muted-2` est en `!important` : le survol doit l'etre aussi. */
+.footer-nav a:hover,
+.footer-nav a:focus-visible {
+  color: var(--brand) !important;
+}
+
+@media (pointer: coarse) {
+  .footer-nav a {
+    padding-block: 0.5rem;
+  }
+}
+
+/* Une adresse e-mail doit rester lisible en entier : on la replie sur deux
+   lignes plutot que de la tronquer, l'ellipse en cacherait une partie. */
+.text-wrap-anywhere {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
 /* --------------------------------------------------------------------------
    6. Animations
    -------------------------------------------------------------------------- */
@@ -1034,5 +1520,11 @@ p {
   .js .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  /* La cascade d'ouverture du menu n'a pas d'effet sans transition. */
+  .menu-mobile[data-open='true'] .menu-mobile__list li,
+  .menu-mobile[data-open='true'] .menu-mobile__foot {
+    transition-delay: 0s !important;
   }
 }
