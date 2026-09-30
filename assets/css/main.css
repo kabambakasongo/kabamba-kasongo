@@ -1,0 +1,1038 @@
+/* ==========================================================================
+   KABAMBA KASONGO — Portfolio
+   Feuille de style principale, chargee APRES Bootstrap pour surcharger
+   les variables de theme. Aucun CDN : polices et icones sont locales.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Polices (variables, sous-ensemble latin)
+   -------------------------------------------------------------------------- */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('../fonts/space-grotesk-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+/* --------------------------------------------------------------------------
+   2. Design tokens
+   Le theme bascule via la classe `.dark` sur <html> : un seul point de
+   bascule suffit a inverser l'ensemble des couleurs.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --font-display: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --canvas: #f6f6f3;
+  --canvas-alt: #eeeeea;
+  --surface: #ffffff;
+  --surface-2: #f0f0ec;
+  --line: rgb(10 11 13 / 0.1);
+  --line-strong: rgb(10 11 13 / 0.18);
+  --ink: #0b0c0e;
+  --ink-muted: #4a4f57;
+  --ink-subtle: #676d77;
+  --brand: #bf4310;
+  --brand-strong: #a02f08;
+  --brand-soft: rgb(191 67 16 / 0.12);
+  --brand-contrast: #ffffff;
+  --accent: #0d8b80;
+
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: #0a0b0d;
+  --canvas-alt: #0e1013;
+  --surface: #111317;
+  --surface-2: #171a1f;
+  --line: rgb(255 255 255 / 0.09);
+  --line-strong: rgb(255 255 255 / 0.18);
+  --ink: #eceef1;
+  --ink-muted: #a2a8b2;
+  --ink-subtle: #7c8390;
+  --brand: #ff8a4c;
+  --brand-strong: #ffb37a;
+  --brand-soft: rgb(255 138 76 / 0.14);
+  --brand-contrast: #140b06;
+  --accent: #4fd6c5;
+
+  color-scheme: dark;
+}
+
+/* --------------------------------------------------------------------------
+   3. Mapping des variables Bootstrap sur nos tokens
+   Bootstrap lit ces variables en CSS : on aligne ses composants sur le theme
+   sans avoir a surcharger chaque classe une a une.
+   -------------------------------------------------------------------------- */
+
+html,
+[data-bs-theme] {
+  --bs-body-bg: var(--canvas);
+  --bs-body-color: var(--ink);
+  --bs-body-font-family: var(--font-sans);
+  --bs-emphasis-color: var(--ink);
+  --bs-secondary-color: var(--ink-muted);
+  --bs-tertiary-color: var(--ink-subtle);
+  --bs-secondary-bg: var(--surface-2);
+  --bs-tertiary-bg: var(--surface-2);
+  --bs-border-color: var(--line);
+  --bs-border-color-translucent: var(--line);
+  --bs-heading-color: var(--ink);
+  --bs-primary: var(--brand);
+  --bs-primary-rgb: 191, 67, 16;
+  --bs-link-color: var(--brand);
+  --bs-link-hover-color: var(--brand-strong);
+  --bs-link-color-rgb: 191, 67, 16;
+  --bs-link-hover-color-rgb: 160, 47, 8;
+  --bs-focus-ring-color: var(--brand-soft);
+  --bs-border-radius: 0.75rem;
+  --bs-border-radius-sm: 0.5rem;
+  --bs-border-radius-lg: 1rem;
+  --bs-border-radius-xl: 1.5rem;
+  --bs-font-sans-serif: var(--font-sans);
+  --bs-font-monospace: var(--font-mono);
+}
+
+.dark {
+  --bs-primary-rgb: 255, 138, 76;
+  --bs-link-color-rgb: 255, 138, 76;
+  --bs-link-hover-color-rgb: 255, 179, 122;
+}
+
+/* --------------------------------------------------------------------------
+   4. Base
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-feature-settings: 'cv02', 'cv03', 'cv04';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+::selection {
+  background-color: var(--brand);
+  color: var(--brand-contrast);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@supports (scrollbar-width: thin) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--line-strong) transparent;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--line-strong);
+  border-radius: 999px;
+  border: 3px solid var(--canvas);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--brand);
+}
+
+.text-muted-2 {
+  color: var(--ink-muted) !important;
+}
+.text-subtle {
+  color: var(--ink-subtle) !important;
+}
+.text-brand {
+  color: var(--brand) !important;
+}
+.bg-surface {
+  background-color: var(--surface) !important;
+}
+.bg-surface-2 {
+  background-color: var(--surface-2) !important;
+}
+.bg-canvas-alt {
+  background-color: var(--canvas-alt) !important;
+}
+.font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+/* Utilitaires absents de Bootstrap, utilises dans le balisage. */
+.place-items-center {
+  place-items: center;
+}
+.min-w-0 {
+  min-width: 0;
+}
+
+.text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--brand) 0%,
+    var(--brand-strong) 45%,
+    var(--accent) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.divider-glow {
+  height: 1px;
+  border: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--brand) 40%, transparent),
+    transparent
+  );
+}
+
+/* --------------------------------------------------------------------------
+   5. Composants
+   -------------------------------------------------------------------------- */
+
+/* --- Mise en page ------------------------------------------------------- */
+
+.container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 78rem;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-page {
+    padding-inline: 2.5rem;
+  }
+}
+
+.section {
+  position: relative;
+  padding-block: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: 6.5rem;
+  }
+}
+
+.section-head {
+  max-width: 46rem;
+  margin-bottom: 3rem;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--brand);
+}
+
+.section-title {
+  margin: 0.75rem 0 0;
+  font-size: clamp(1.85rem, 1.2rem + 2.4vw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+.section-lead {
+  margin: 1rem 0 0;
+  color: var(--ink-muted);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+/* --- Surfaces ----------------------------------------------------------- */
+
+.glass {
+  background-color: color-mix(in oklab, var(--surface) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+}
+
+.glass-strong {
+  background-color: color-mix(in oklab, var(--surface) 88%, transparent);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+}
+
+.card {
+  position: relative;
+  border-radius: 1.25rem;
+  border: 1px solid var(--line);
+  background-color: var(--surface);
+  transition:
+    border-color 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s ease;
+}
+
+.card-hover:hover {
+  border-color: color-mix(in oklab, var(--brand) 45%, var(--line));
+  transform: translateY(-4px);
+  box-shadow: 0 24px 60px -30px color-mix(in oklab, var(--brand) 55%, transparent);
+}
+
+.grid-backdrop {
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.backdrop-fixed {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.backdrop-fixed::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  background-image:
+    radial-gradient(circle at 18% 12%, color-mix(in oklab, var(--brand) 16%, transparent), transparent 45%),
+    radial-gradient(circle at 82% 78%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 45%);
+  animation: grid-pan 26s linear infinite;
+}
+
+/* --- Navigation --------------------------------------------------------- */
+
+.nav-link-kk {
+  position: relative;
+  border-radius: 999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.9rem;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-link-kk:hover,
+.nav-link-kk:focus-visible {
+  color: var(--ink);
+}
+
+.nav-link-kk.is-active {
+  color: var(--brand);
+  background-color: var(--brand-soft);
+}
+
+.menu-mobile a.nav-link-kk {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  border-radius: 0.85rem;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+}
+
+.menu-mobile a.nav-link-kk:hover {
+  background-color: var(--surface-2);
+  color: var(--ink);
+}
+
+.menu-mobile {
+  max-height: calc(100dvh - 4rem);
+  overflow-y: auto;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background-color: color-mix(in oklab, var(--surface-2) 70%, transparent);
+  color: var(--ink);
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.icon-btn:hover {
+  border-color: color-mix(in oklab, var(--brand) 50%, var(--line));
+  color: var(--brand);
+  transform: translateY(-2px);
+}
+
+.navbar-toggler {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.4rem 0.6rem;
+  color: var(--ink);
+  background-color: color-mix(in oklab, var(--surface-2) 70%, transparent);
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* --- Boutons ------------------------------------------------------------ */
+
+.btn {
+  --bs-btn-border-radius: 999px;
+  --bs-btn-font-weight: 500;
+  --bs-btn-padding-x: 1.4rem;
+  --bs-btn-padding-y: 0.68rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.92rem;
+  border-radius: 999px;
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  --bs-btn-color: var(--brand-contrast);
+  --bs-btn-bg: var(--brand);
+  --bs-btn-border-color: var(--brand);
+  --bs-btn-hover-color: var(--brand-contrast);
+  --bs-btn-hover-bg: var(--brand-strong);
+  --bs-btn-hover-border-color: var(--brand-strong);
+  --bs-btn-active-color: var(--brand-contrast);
+  --bs-btn-active-bg: var(--brand-strong);
+  --bs-btn-active-border-color: var(--brand-strong);
+  --bs-btn-disabled-color: var(--brand-contrast);
+  --bs-btn-disabled-bg: var(--brand);
+  --bs-btn-disabled-border-color: var(--brand);
+  box-shadow: 0 14px 34px -18px color-mix(in oklab, var(--brand) 80%, transparent);
+}
+
+.btn-outline-kk {
+  --bs-btn-color: var(--ink);
+  --bs-btn-border-color: var(--line-strong);
+  --bs-btn-hover-color: var(--brand);
+  --bs-btn-hover-bg: var(--brand-soft);
+  --bs-btn-hover-border-color: color-mix(in oklab, var(--brand) 50%, var(--line));
+  --bs-btn-active-color: var(--brand);
+  --bs-btn-active-bg: var(--brand-soft);
+  --bs-btn-active-border-color: color-mix(in oklab, var(--brand) 50%, var(--line));
+}
+
+.btn-lg {
+  --bs-btn-padding-y: 0.85rem;
+  --bs-btn-padding-x: 1.7rem;
+  --bs-btn-font-size: 0.98rem;
+}
+
+.btn-sm {
+  --bs-btn-padding-y: 0.5rem;
+  --bs-btn-padding-x: 1.05rem;
+  --bs-btn-font-size: 0.85rem;
+}
+
+/* --- Pastilles et tags -------------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background-color: var(--surface-2);
+  color: var(--ink-muted);
+  padding: 0.22rem 0.6rem;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.tag-brand {
+  border-color: color-mix(in oklab, var(--brand) 40%, transparent);
+  background-color: var(--brand-soft);
+  color: var(--brand);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background-color: color-mix(in oklab, var(--surface) 60%, transparent);
+  backdrop-filter: blur(8px);
+  padding: 0.4rem 0.9rem;
+  font-size: 0.78rem;
+  color: var(--ink-muted);
+}
+
+.dot-live {
+  position: relative;
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.dot-live::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background-color: #10b981;
+  animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.dot-live::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background-color: #10b981;
+}
+
+/* --- Compétences (pastilles de niveau) --------------------------------- */
+
+.dots {
+  display: inline-flex;
+  gap: 0.22rem;
+}
+
+.dots i {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 999px;
+  background-color: var(--line-strong);
+}
+
+.dots i.on {
+  background-color: var(--brand);
+}
+
+.skill-icon {
+  display: grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 0.9rem;
+  border: 1px solid var(--line);
+  background-color: var(--brand-soft);
+  color: var(--brand);
+  font-size: 1.1rem;
+}
+
+/* --- Filtres de projets ------------------------------------------------- */
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background-color: transparent;
+  color: var(--ink-muted);
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.filter-btn:hover {
+  color: var(--ink);
+  border-color: var(--line-strong);
+}
+
+.filter-btn.is-active {
+  color: var(--brand-contrast);
+  background-color: var(--brand);
+  border-color: var(--brand);
+}
+
+.project-card {
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.project-cover {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: linear-gradient(140deg, var(--surface-2), var(--canvas-alt));
+  display: grid;
+  place-items: center;
+}
+
+.project-cover .monogram-cover {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 700;
+  /* Les accents inline des projets sont des neons concus pour le theme sombre :
+     en theme clair ils sont assombris avec l'encre pour rester lisibles (WCAG 3:1). */
+  color: color-mix(in oklab, var(--accent, var(--brand)) 52%, var(--ink));
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .project-cover .monogram-cover {
+  color: var(--accent, var(--brand));
+}
+
+.project-card:hover .project-cover .monogram-cover {
+  transform: scale(1.08);
+}
+
+.project-cover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.55;
+}
+
+/* --- Modale ------------------------------------------------------------- */
+
+.modal-content {
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  background-color: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 40px 90px -50px rgb(0 0 0 / 0.6);
+}
+
+.modal-header,
+.modal-footer {
+  border-color: var(--line);
+}
+
+.modal-backdrop.show {
+  opacity: 0.72;
+}
+
+.btn-close {
+  background-size: 0.9rem;
+  filter: invert(1) grayscale(1) brightness(2);
+}
+
+:root:not(.dark) .btn-close {
+  filter: none;
+}
+
+/* --- Formulaire --------------------------------------------------------- */
+
+.form-control,
+.form-select {
+  background-color: color-mix(in oklab, var(--surface-2) 45%, transparent);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  border-radius: 0.85rem;
+  padding: 0.72rem 0.95rem;
+  font-size: 0.92rem;
+}
+
+.form-control::placeholder {
+  color: color-mix(in oklab, var(--ink-subtle) 75%, transparent);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: color-mix(in oklab, var(--surface-2) 45%, transparent);
+  border-color: var(--brand);
+  color: var(--ink);
+  box-shadow: 0 0 0 0.2rem var(--brand-soft);
+}
+
+.form-control.is-invalid {
+  border-color: #f43f5e;
+}
+
+/* --- Bandeau rotatif ---------------------------------------------------- */
+
+.rotator {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--brand);
+  overflow: hidden;
+  height: 1.75rem;
+}
+
+.rotator-item {
+  display: block;
+  white-space: nowrap;
+  transform: translateY(120%);
+  opacity: 0;
+}
+
+.rotator-item.is-current {
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease;
+}
+
+.rotator-item.is-leaving {
+  transform: translateY(-120%);
+  opacity: 0;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s ease;
+}
+
+/* --- Bandeau de technologies (marquee) ---------------------------------- */
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+  padding-block: 0.75rem;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 10%,
+    #000 90%,
+    transparent
+  );
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-inline: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+
+/* --- Panneau "code" flottant ------------------------------------------- */
+
+.code-panel {
+  position: absolute;
+  bottom: -2rem;
+  left: -1rem;
+  width: 16rem;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  padding: 1rem;
+  box-shadow: 0 24px 50px -30px rgb(0 0 0 / 0.7);
+  animation: float 9s ease-in-out infinite;
+}
+
+.code-panel pre {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  line-height: 1.7;
+  color: var(--ink-muted);
+  white-space: pre;
+  overflow: hidden;
+}
+
+.tok-key {
+  color: var(--brand);
+}
+.tok-type {
+  color: var(--accent);
+}
+.tok-str {
+  color: #34d399;
+}
+
+.traffic {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+}
+
+.traffic i {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  display: block;
+}
+
+/* --- Processus ---------------------------------------------------------- */
+
+.step-card {
+  position: relative;
+  height: 100%;
+  padding: 1.6rem;
+}
+
+.step-num {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--brand);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 1.4rem;
+  top: 0.6rem;
+  bottom: 0.6rem;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--line-strong) 12%,
+    var(--line-strong) 88%,
+    transparent
+  );
+}
+
+/* --- Github ------------------------------------------------------------- */
+
+.avatar-ring {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  padding: 3px;
+  background: linear-gradient(140deg, var(--brand), var(--accent));
+}
+
+.avatar-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  object-fit: cover;
+  background-color: var(--surface);
+}
+
+.stat-tile {
+  padding: 1.1rem 1.25rem;
+  border-radius: 1rem;
+  border: 1px solid var(--line);
+  background-color: var(--surface);
+}
+
+.stat-tile .value {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-tile .label {
+  margin-top: 0.35rem;
+  font-size: 0.76rem;
+  color: var(--ink-subtle);
+}
+
+/* --- Apparition au scroll ---------------------------------------------- */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Retour en haut ------------------------------------------------------ */
+
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1030;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease,
+    transform 0.3s ease;
+}
+
+.back-to-top.is-shown {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+@media (min-width: 768px) {
+  .back-to-top {
+    right: 2rem;
+    bottom: 2rem;
+  }
+}
+
+/* --- Pied de page ------------------------------------------------------- */
+
+/* --------------------------------------------------------------------------
+   6. Animations
+   -------------------------------------------------------------------------- */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes grid-pan {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 56px 56px;
+  }
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Préférence système : moins d'animations
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,74 +1,77 @@
 <!doctype html>
 <html lang="fr" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="author" content="KABAMBA KASONGO" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="favicon.svg" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#0A0B0D" id="theme-color" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta author="KABAMBA KASONGO" />
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
-  <link rel="apple-touch-icon" href="./favicon.svg" />
-  <link rel="manifest" href="./manifest.webmanifest" />
-  <meta name="theme-color" content="#0A0B0D" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#F6F6F3" media="(prefers-color-scheme: light)" />
+    <title>KABAMBA KASONGO | Full-Stack Developer</title>
+    <meta
+      name="description"
+      content="Portfolio de KABAMBA KASONGO, développeur Full-Stack spécialisé dans la création d'applications web, plateformes SaaS et solutions digitales modernes."
+    />
+    <meta
+      name="keywords"
+      content="KABAMBA KASONGO, développeur Full-Stack, React, TypeScript, Django, Python, SaaS, application web, Kolwezi, RDC, portfolio, développeur web"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="French" />
+    <link
+      rel="canonical"
+      href="https://kabambakasongo.github.io/kabamba-kasongo/"
+    />
 
-  <title>KABAMBA KASONGO | Full-Stack Developer</title>
-  <meta name="description"
-    content="Portfolio de KABAMBA KASONGO, developpeur Full-Stack specialise dans la creation d'applications web, plateformes SaaS et solutions digitales modernes." />
-  <meta name="keywords"
-    content="KABAMBA KASONGO, developpeur Full-Stack, React, TypeScript, Django, Python, SaaS, application web, Kolwezi, RDC, portfolio, developpeur web" />
-  <meta name="author" content="KABAMBA KASONGO" />
-  <meta name="robots" content="index, follow" />
-  <meta name="language" content="French" />
-  <!--
-      Le jeton __SITE_URL__ est remplace au build par l'URL publique reelle
-      (scripts/inject-seo.mjs, via la variable SITE_URL). Aucune URL n'est
-      ecrite en dur : le meme jeton alimente le canonical, l'Open Graph, le
-      Twitter Card et le JSON-LD.
-    -->
-  <link rel="canonical" href="__SITE_URL__" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KABAMBA KASONGO" />
+    <meta property="og:title" content="KABAMBA KASONGO | Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Développeur Full-Stack : applications web, plateformes SaaS et solutions digitales modernes."
+    />
+    <meta property="og:url" content="https://kabambakasongo.github.io/kabamba-kasongo/" />
+    <meta
+      property="og:image"
+      content="https://kabambakasongo.github.io/kabamba-kasongo/og-image.svg"
+    />
+    <meta property="og:image:alt" content="KABAMBA KASONGO - Full-Stack Developer" />
+    <meta property="og:locale" content="fr_FR" />
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="KABAMBA KASONGO" />
-  <meta property="og:title" content="KABAMBA KASONGO | Full-Stack Developer" />
-  <meta property="og:description"
-    content="Developpeur Full-Stack : applications web, plateformes SaaS et solutions digitales modernes." />
-  <meta property="og:url" content="__SITE_URL__" />
-  <meta property="og:image" content="__SITE_URL__og-image.svg" />
-  <meta property="og:image:alt" content="KABAMBA KASONGO - Full-Stack Developer" />
-  <meta property="og:locale" content="fr_FR" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="KABAMBA KASONGO | Full-Stack Developer" />
+    <meta
+      name="twitter:description"
+      content="Développeur Full-Stack : applications web, plateformes SaaS et solutions digitales modernes."
+    />
+    <meta
+      name="twitter:image"
+      content="https://kabambakasongo.github.io/kabamba-kasongo/og-image.svg"
+    />
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="KABAMBA KASONGO | Full-Stack Developer" />
-  <meta name="twitter:description"
-    content="Developpeur Full-Stack : applications web, plateformes SaaS et solutions digitales modernes." />
-  <meta name="twitter:image" content="__SITE_URL__og-image.svg" />
+    <!-- Vendorise : aucune dependance a un CDN externe -->
+    <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="vendor/bootstrap/css/bootstrap.min.css" as="style" />
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="vendor/bootstrap-icons/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-    media="print" onload="this.media = 'all'" />
-  <noscript>
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
-  </noscript>
-
-  <!--
-      Donnees structurees Schema.org. Renseignez `sameAs` avec vos profils
-      sociaux reels (une URL par profil) ; laissez le tableau vide tant que
-      vous n'avez pas ajoute de lien dans src/config/profile.ts.
-    -->
-  <script type="application/ld+json">
+    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "KABAMBA KASONGO",
-        "url": "__SITE_URL__",
-        "image": "__SITE_URL__og-image.svg",
+        "url": "https://kabambakasongo.github.io/kabamba-kasongo/",
+        "image": "https://kabambakasongo.github.io/kabamba-kasongo/og-image.svg",
         "jobTitle": "Full-Stack Developer",
-        "description": "Developpeur Full-Stack specialise dans la creation d'applications web, de plateformes SaaS et de solutions digitales modernes.",
+        "description": "Développeur Full-Stack spécialisé dans la création d'applications web, de plateformes SaaS et de solutions digitales modernes.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Kolwezi",
@@ -81,53 +84,1297 @@
           "Python",
           "Django",
           "PostgreSQL",
-          "Tailwind CSS",
+          "Bootstrap",
           "PyQt6",
           "PySide6",
           "Docker",
           "REST API"
         ],
-        "sameAs": []
+        "sameAs": [
+          "https://github.com/kabambakasongo",
+          "https://linkedin.com/in/ledoux-kabamba-7b773a319"
+        ]
       }
     </script>
 
-  <script>
-    // Applique le theme avant le premier rendu pour eviter tout flash.
-    // Le portfolio est sombre par defaut : le mode clair n'est applique
-    // que si l'utilisateur l'a choisi precedemment.
-    (function () {
-      var light = false;
-      try {
-        light = localStorage.getItem('kk-theme') === 'light';
-      } catch (e) {
-        light = false;
-      }
-      document.documentElement.classList.toggle('dark', !light);
-    })();
-  </script>
-  <noscript>
-    <style>
-      /* Sans JavaScript, les elements d'apparition progressive restent visibles. */
-      [style*='opacity:0'] {
-        opacity: 1 !important;
-        transform: none !important;
-      }
-    </style>
-  </noscript>
-</head>
+    <script>
+      // Applique le theme avant le premier rendu pour eviter tout flash,
+      // et marque le document comme "JS actif" pour les animations.
+      (function () {
+        document.documentElement.classList.add('js');
+        var light = false;
+        try {
+          light = localStorage.getItem('kk-theme') === 'light';
+        } catch (e) {
+          light = false;
+        }
+        document.documentElement.classList.toggle('dark', !light);
+        document
+          .getElementById('theme-color')
+          .setAttribute('content', light ? '#F6F6F3' : '#0A0B0D');
+      })();
+    </script>
 
-<body>
-  <div id="root"></div>
-  <noscript>
-    <div style="padding: 2rem; font-family: system-ui; color: #e9eaec; background: #0a0b0d">
-      <h1>KABAMBA KASONGO â€” Full-Stack Developer</h1>
-      <p>
-        Ce portfolio necessite JavaScript. Merci de l'activer dans votre navigateur pour consulter
-        l'ensemble de mes projets et competences.
-      </p>
-    </div>
-  </noscript>
-  <script type="module" src="/src/main.tsx"></script>
-</body>
+    <noscript>
+      <style>
+        /* Sans JavaScript, les elements d'apparition progressive restent visibles. */
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+  </head>
 
+  <body>
+    <div class="backdrop-fixed" aria-hidden="true"></div>
+
+    <a
+      href="#apropos"
+      class="visually-hidden-focusable position-absolute btn btn-primary btn-sm"
+      style="top: 0.75rem; left: 0.75rem; z-index: 2000"
+      >Aller au contenu</a
+    >
+
+    <!-- ====================================================================
+         NAVIGATION
+         ==================================================================== -->
+    <header id="site-header" class="fixed-top">
+      <nav class="container-page d-flex align-items-center" style="height: 4.5rem" aria-label="Navigation principale">
+        <a href="#top" class="d-flex align-items-center gap-2 text-decoration-none" aria-label="KABAMBA KASONGO — retour en haut">
+          <span
+            class="d-grid place-items-center flex-shrink-0 font-display fw-bold"
+            style="width: 2.25rem; height: 2.25rem; border-radius: 0.7rem; font-size: 0.85rem; color: var(--brand-contrast); background: var(--brand)"
+            >KK</span
+          >
+          <span class="font-display fw-semibold d-none d-sm-inline" style="font-size: 0.9rem; color: var(--ink)"
+            >KABAMBA KASONGO</span
+          >
+        </a>
+
+        <ul class="d-none d-lg-flex align-items-center gap-1 ms-auto me-3">
+          <li><a class="nav-link-kk" href="#apropos" data-nav>À propos</a></li>
+          <li><a class="nav-link-kk" href="#competences" data-nav>Compétences</a></li>
+          <li><a class="nav-link-kk" href="#projets" data-nav>Projets</a></li>
+          <li><a class="nav-link-kk" href="#services" data-nav>Services</a></li>
+          <li><a class="nav-link-kk" href="#parcours" data-nav>Parcours</a></li>
+          <li><a class="nav-link-kk" href="#process" data-nav>Process</a></li>
+          <li><a class="nav-link-kk" href="#github" data-nav>GitHub</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2 ms-auto ms-lg-0">
+          <button
+            type="button"
+            class="icon-btn"
+            id="theme-toggle"
+            aria-label="Changer de thème"
+            title="Changer de thème"
+          >
+            <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
+          </button>
+
+          <a href="mailto:ledouxkabamba135@gmail.com" class="btn btn-primary btn-sm d-none d-sm-inline-flex">Me contacter</a>
+
+          <button
+            type="button"
+            class="navbar-toggler d-lg-none"
+            id="nav-toggle"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
+            aria-label="Ouvrir le menu"
+          >
+            <i class="bi bi-list" data-nav-icon aria-hidden="true"></i>
+          </button>
+        </div>
+      </nav>
+
+      <div id="mobile-menu" class="menu-mobile glass-strong d-lg-none" hidden>
+        <ul class="container-page list-unstyled d-flex flex-column gap-1 py-3 mb-0">
+          <li><a class="nav-link-kk" href="#apropos" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">01</span> À propos</a></li>
+          <li><a class="nav-link-kk" href="#competences" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">02</span> Compétences</a></li>
+          <li><a class="nav-link-kk" href="#projets" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">03</span> Projets</a></li>
+          <li><a class="nav-link-kk" href="#services" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">04</span> Services</a></li>
+          <li><a class="nav-link-kk" href="#parcours" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">05</span> Parcours</a></li>
+          <li><a class="nav-link-kk" href="#process" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">06</span> Process</a></li>
+          <li><a class="nav-link-kk" href="#github" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">07</span> GitHub</a></li>
+          <li><a class="nav-link-kk" href="#contact" data-nav><span class="font-mono text-subtle" style="font-size: 0.7rem">08</span> Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <main>
+      <!-- ==================================================================
+           HERO
+           ================================================================== -->
+      <section id="top" class="d-flex align-items-center" style="min-height: 100svh; padding-top: 7rem; padding-bottom: 4rem">
+        <div class="container-page">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-7 position-relative" style="z-index: 1">
+              <p class="pill mb-4">
+                <span class="dot-live" aria-hidden="true"></span>
+                Disponible pour de nouvelles missions
+              </p>
+
+              <h1 class="mb-0 fw-bold" style="font-size: clamp(2.5rem, 1.5rem + 5vw, 4.5rem); line-height: 1.05">
+                <span class="d-block font-display">KABAMBA</span>
+                <span class="d-block font-display text-gradient">KASONGO</span>
+              </h1>
+
+              <div class="d-flex flex-wrap align-items-center gap-3 mt-4">
+                <span class="font-display fw-semibold" style="font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.5rem); color: var(--ink)"
+                  >Développeur Full-Stack</span
+                >
+                <span class="text-subtle" aria-hidden="true">&middot;</span>
+                <span class="rotator" id="rotator" aria-label="Je conçois et développe des applications web">
+                  <span class="rotator-item is-current">des applications web</span>
+                  <span class="rotator-item">des plateformes SaaS</span>
+                  <span class="rotator-item">des solutions métier</span>
+                </span>
+              </div>
+
+              <p class="text-muted-2 mt-4 mb-0" style="max-width: 34rem; font-size: 1.05rem; line-height: 1.75">
+                Je conçois et développe des applications web modernes, des plateformes SaaS et des
+                solutions digitales performantes adaptées aux besoins des entreprises.
+              </p>
+
+              <div class="d-flex flex-wrap gap-3 mt-5">
+                <a href="#projets" class="btn btn-primary btn-lg">
+                  Voir mes projets <i class="bi bi-arrow-down-right" aria-hidden="true"></i>
+                </a>
+                <a href="#contact" class="btn btn-outline-kk btn-lg">
+                  Me contacter <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                </a>
+              </div>
+
+              <p class="d-flex flex-wrap text-subtle mt-5 mb-0 gap-4" style="font-size: 0.9rem">
+                <span class="d-inline-flex align-items-center gap-2">
+                  <i class="bi bi-geo-alt text-brand" aria-hidden="true"></i> Based in Kolwezi, RDC 🇨🇩
+                </span>
+                <span class="d-inline-flex align-items-center gap-2">
+                  <i class="bi bi-github" aria-hidden="true"></i> Open source friendly
+                </span>
+              </p>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="position-relative mx-auto" style="max-width: 24rem">
+                <div
+                  class="position-absolute rounded-4"
+                  style="inset: -1.5rem; background: linear-gradient(140deg, var(--brand-soft), transparent); filter: blur(2.5rem)"
+                  aria-hidden="true"
+                ></div>
+
+                <div class="card overflow-hidden position-relative" style="border-radius: 2rem; box-shadow: 0 30px 70px -40px rgb(0 0 0 / 0.7)">
+                  <div class="grid-backdrop position-absolute h-100 w-100" style="opacity: 0.3" aria-hidden="true"></div>
+                  <img
+                    src="portrait.jpg"
+                    alt="Portrait de KABAMBA KASONGO, Développeur Full-Stack"
+                    width="800"
+                    height="800"
+                    loading="eager"
+                    decoding="async"
+                    class="position-relative w-100"
+                    style="aspect-ratio: 1 / 1; object-fit: cover"
+                    onerror="this.replaceWith(document.createTextNode('KK'))"
+                  />
+                  <div
+                    class="position-absolute h-100 w-100"
+                    style="background: linear-gradient(to top, var(--canvas) 2%, transparent 55%)"
+                    aria-hidden="true"
+                  ></div>
+                  <div class="position-absolute bottom-0 start-0 d-flex w-100 align-items-end justify-content-between gap-3 p-4">
+                    <div>
+                      <p class="eyebrow mb-1">Full-Stack</p>
+                      <p class="font-display fw-semibold mb-0" style="font-size: 1.1rem; color: var(--ink)">Kolwezi, RDC</p>
+                    </div>
+                    <span class="d-grid place-items-center rounded-circle" style="width: 2.25rem; height: 2.25rem; border: 1px solid var(--line); background: color-mix(in oklab, var(--surface) 80%, transparent); color: var(--brand)">
+                      <i class="bi bi-stars" aria-hidden="true"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="code-panel glass-strong d-none d-sm-block" aria-hidden="true">
+                  <div class="traffic">
+                    <i style="background: #fb7185"></i>
+                    <i style="background: #fbbf24"></i>
+                    <i style="background: #34d399"></i>
+                    <span class="font-mono text-subtle ms-2" style="font-size: 0.6rem">stack.ts</span>
+                  </div>
+                  <pre><span class="tok-key">class</span> <span class="tok-type">FullStackEngineer</span>:
+  stack = [
+    <span class="tok-str">'React'</span>,
+    <span class="tok-str">'TypeScript'</span>,
+    <span class="tok-str">'Django'</span>,
+    <span class="tok-str">'PostgreSQL'</span>,
+    <span class="tok-str">'PyQt6'</span>,
+    <span class="tok-str">'Docker'</span>,
+  ]
+  <span class="tok-key">build</span>(target: <span class="tok-str">'production'</span>)</pre>
+                </div>
+
+                <div class="glass-strong d-none d-sm-flex align-items-center gap-2 rounded-pill position-absolute" style="top: -1rem; right: -0.5rem; padding: 0.45rem 0.9rem; border: 1px solid var(--line); box-shadow: 0 10px 30px -18px rgb(0 0 0 / 0.8)">
+                  <span class="rounded-circle" style="width: 0.5rem; height: 0.5rem; background: var(--brand)"></span>
+                  <span class="font-mono text-muted-2" style="font-size: 0.72rem">React &middot; Django &middot; Qt</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5" style="margin-top: 5rem">
+            <p class="eyebrow mb-3">Stack technique</p>
+            <div class="marquee">
+              <div class="marquee-track" id="marquee-track">
+                <span class="marquee-item"><i class="bi bi-filetype-jsx" aria-hidden="true"></i> TypeScript</span>
+                <span class="marquee-item"><i class="bi bi-lightning-charge" aria-hidden="true"></i> React</span>
+                <span class="marquee-item"><i class="bi bi-filetype-py" aria-hidden="true"></i> Python</span>
+                <span class="marquee-item"><i class="bi bi-server" aria-hidden="true"></i> Django</span>
+                <span class="marquee-item"><i class="bi bi-database" aria-hidden="true"></i> PostgreSQL</span>
+                <span class="marquee-item"><i class="bi bi-bootstrap" aria-hidden="true"></i> Bootstrap</span>
+                <span class="marquee-item"><i class="bi bi-window" aria-hidden="true"></i> PyQt6</span>
+                <span class="marquee-item"><i class="bi bi-window" aria-hidden="true"></i> PySide6</span>
+                <span class="marquee-item"><i class="bi bi-box" aria-hidden="true"></i> Docker</span>
+                <span class="marquee-item"><i class="bi bi-git" aria-hidden="true"></i> Git</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           A PROPOS
+           ================================================================== -->
+      <section id="apropos" class="section bg-canvas-alt">
+        <div class="container-page">
+          <div class="section-head reveal">
+            <p class="eyebrow mb-0">01 &mdash; À propos</p>
+            <h2 class="section-title">Un développeur full-stack au service de solutions concrètes</h2>
+          </div>
+
+          <div class="row g-4 g-lg-5">
+            <div class="col-lg-7">
+              <div class="reveal">
+                <p class="text-muted-2" style="line-height: 1.85">
+                  Je suis KABAMBA KASONGO, développeur Full-Stack basé à Kolwezi en République
+                  Démocratique du Congo. Je conçois et développe des applications web, des
+                  plateformes SaaS et des logiciels de gestion destinés à répondre à des besoins
+                  réels.
+                </p>
+                <p class="text-muted-2" style="line-height: 1.85">
+                  J'aime transformer des idées et des besoins métiers en solutions digitales
+                  modernes, performantes et faciles à utiliser.
+                </p>
+                <p class="text-muted-2 mb-0" style="line-height: 1.85">
+                  Mon travail couvre toute la chaîne de développement : conception de
+                  l'architecture, développement frontend et backend, bases de données,
+                  automatisation et mise en production.
+                </p>
+              </div>
+
+              <div class="row g-3 mt-4">
+                <div class="col-sm-4">
+                  <div class="stat-tile h-100">
+                    <p class="value mb-0">06</p>
+                    <p class="label mb-0">Projets réalisés</p>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="stat-tile h-100">
+                    <p class="value mb-0">29</p>
+                    <p class="label mb-0">Technologies maîtrisées</p>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="stat-tile h-100">
+                    <p class="value mb-0">06</p>
+                    <p class="label mb-0">Solutions développées</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-5">
+              <div class="card p-4 p-lg-5 h-100 reveal">
+                <p class="eyebrow mb-3">Repères clés</p>
+                <h3 class="font-display fs-5 fw-semibold mb-4" style="color: var(--ink)">Domaines de compétence</h3>
+
+                <div class="d-flex flex-column gap-4">
+                  <div class="d-flex gap-3">
+                    <span class="skill-icon flex-shrink-0"><i class="bi bi-window" aria-hidden="true"></i></span>
+                    <div>
+                      <p class="eyebrow mb-1">Web</p>
+                      <p class="fw-semibold mb-1" style="color: var(--ink)">Applications web &amp; SaaS</p>
+                      <p class="text-subtle mb-0" style="font-size: 0.85rem">React, TypeScript, Django, REST API</p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-3">
+                    <span class="skill-icon flex-shrink-0"><i class="bi bi-display" aria-hidden="true"></i></span>
+                    <div>
+                      <p class="eyebrow mb-1">Desktop</p>
+                      <p class="fw-semibold mb-1" style="color: var(--ink)">Logiciels professionnels</p>
+                      <p class="text-subtle mb-0" style="font-size: 0.85rem">PyQt6, PySide6, SQLite, PostgreSQL</p>
+                    </div>
+                  </div>
+
+                  <div class="d-flex gap-3">
+                    <span class="skill-icon flex-shrink-0"><i class="bi bi-briefcase" aria-hidden="true"></i></span>
+                    <div>
+                      <p class="eyebrow mb-1">Secteur</p>
+                      <p class="fw-semibold mb-1" style="color: var(--ink)">Gestion &amp; éducation</p>
+                      <p class="text-subtle mb-0" style="font-size: 0.85rem">Scolaire, finance, commerce, formation</p>
+                    </div>
+                  </div>
+                </div>
+
+                <hr class="divider-glow my-4" />
+
+                <p class="text-muted-2 mb-0 fst-italic" style="font-size: 0.92rem; line-height: 1.7">
+                  &laquo;&nbsp;Des interfaces sobres, une architecture solide, et un code que n'importe
+                  quel autre développeur peut maintenir.&nbsp;&raquo;
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           COMPETENCES
+           ================================================================== -->
+      <section id="competences" class="section">
+        <div class="container-page">
+          <div class="section-head reveal">
+            <p class="eyebrow mb-0">02 &mdash; Compétences</p>
+            <h2 class="section-title">Les technologies que je maîtrise au quotidien</h2>
+            <p class="section-lead">
+              Des couches multiples&nbsp;: interfaces, APIs, bases de données, outils de
+              déploiement et design d'interface.
+            </p>
+          </div>
+
+          <div class="row g-4">
+            <!-- Frontend -->
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-layout-text-window" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Frontend</h3>
+                <p class="text-subtle mb-4" style="font-size: 0.87rem; line-height: 1.65">
+                  Interfaces modernes, accessibles et rapides sur tous les écrans.
+                </p>
+                <div class="d-flex flex-column gap-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">HTML5</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">CSS3</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">JavaScript</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">TypeScript</span><span class="dots" data-level="4" aria-label="Niveau 4 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">React</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Tailwind CSS</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Bootstrap</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">jQuery</span><span class="dots" data-level="4" aria-label="Niveau 4 sur 5"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Backend -->
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-server" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Backend</h3>
+                <p class="text-subtle mb-4" style="font-size: 0.87rem; line-height: 1.65">
+                  APIs REST, modèles de données et logique métier côté serveur.
+                </p>
+                <div class="d-flex flex-column gap-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Python</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Django</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Django REST Framework</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">REST API</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Node.js</span><span class="dots" data-level="3" aria-label="Niveau 3 sur 5"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Desktop -->
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-display" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Desktop</h3>
+                <p class="text-subtle mb-4" style="font-size: 0.87rem; line-height: 1.65">
+                  Logiciels de bureau professionnels, autonomes et optimisés.
+                </p>
+                <div class="d-flex flex-column gap-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">PyQt6</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">PySide6</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Qt</span><span class="dots" data-level="4" aria-label="Niveau 4 sur 5"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bases de donnees -->
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-database" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Bases de données</h3>
+                <p class="text-subtle mb-4" style="font-size: 0.87rem; line-height: 1.65">
+                  Schémas normalisés, requêtes optimisées et migrations propres.
+                </p>
+                <div class="d-flex flex-column gap-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">PostgreSQL</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">MySQL</span><span class="dots" data-level="4" aria-label="Niveau 4 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">SQLite</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DevOps -->
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-git" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">DevOps &amp; outils</h3>
+                <p class="text-subtle mb-4" style="font-size: 0.87rem; line-height: 1.65">
+                  Versionnement, automatisation et mise en production reproductible.
+                </p>
+                <div class="d-flex flex-column gap-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Git</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">GitHub</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">GitHub Actions</span><span class="dots" data-level="4" aria-label="Niveau 4 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Docker</span><span class="dots" data-level="4" aria-label="Niveau 4 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">PyInstaller</span><span class="dots" data-level="4" aria-label="Niveau 4 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">CI/CD</span><span class="dots" data-level="4" aria-label="Niveau 4 sur 5"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Design -->
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-palette" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Design</h3>
+                <p class="text-subtle mb-4" style="font-size: 0.87rem; line-height: 1.65">
+                  Design d'interface&nbsp;: hiérarchie visuelle, ergonomie, responsive.
+                </p>
+                <div class="d-flex flex-column gap-2">
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">UI/UX</span><span class="dots" data-level="4" aria-label="Niveau 4 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Responsive Design</span><span class="dots" data-level="5" aria-label="Niveau 5 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Figma</span><span class="dots" data-level="3" aria-label="Niveau 3 sur 5"></span></div>
+                  <div class="d-flex align-items-center justify-content-between gap-2"><span style="font-size: 0.87rem">Adobe Photoshop</span><span class="dots" data-level="3" aria-label="Niveau 3 sur 5"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PROJETS
+           ================================================================== -->
+      <section id="projets" class="section bg-canvas-alt">
+        <div class="container-page">
+          <div class="section-head reveal">
+            <p class="eyebrow mb-0">03 &mdash; Projets</p>
+            <h2 class="section-title">Des applications concrètes, livrées et documentées</h2>
+            <p class="section-lead">
+              Web, SaaS et desktop&nbsp;: sélectionner une catégorie pour filtrer la liste.
+            </p>
+          </div>
+
+          <div class="filter-bar mb-4 reveal" id="project-filters" role="group" aria-label="Filtrer les projets">
+            <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">Tous</button>
+            <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">Web</button>
+            <button type="button" class="filter-btn" data-filter="saas" aria-pressed="false">SaaS</button>
+            <button type="button" class="filter-btn" data-filter="desktop" aria-pressed="false">Desktop</button>
+            <button type="button" class="filter-btn" data-filter="education" aria-pressed="false">Éducation</button>
+            <button type="button" class="filter-btn" data-filter="business" aria-pressed="false">Business</button>
+          </div>
+
+          <div class="row g-4" id="project-grid">
+            <!-- SchoolFlow -->
+            <div class="col-md-6 col-xl-4 reveal" data-categories="saas web education" data-slug="schoolflow">
+              <article class="card card-hover project-card h-100" role="button" tabindex="0" aria-label="Détails du projet SchoolFlow">
+                <div class="project-cover" style="--accent: #ff6a3d">
+                  <span class="monogram-cover">SF</span>
+                </div>
+                <div class="p-4 d-flex flex-column h-100">
+                  <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                    <h3 class="font-display fs-5 fw-semibold mb-0" style="color: var(--ink)">SchoolFlow</h3>
+                    <span class="tag tag-brand flex-shrink-0">Démo portfolio</span>
+                  </div>
+                  <p class="text-muted-2 mb-3" style="font-size: 0.88rem">Plateforme SaaS de gestion de complexes scolaires</p>
+                  <div class="d-flex flex-wrap gap-2 mt-auto">
+                    <span class="tag">Python</span><span class="tag">Django</span><span class="tag">PostgreSQL</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Majifuzo -->
+            <div class="col-md-6 col-xl-4 reveal" data-categories="desktop education" data-slug="majifuzo">
+              <article class="card card-hover project-card h-100" role="button" tabindex="0" aria-label="Détails du projet Majifuzo">
+                <div class="project-cover" style="--accent: #2dd4bf">
+                  <span class="monogram-cover">MF</span>
+                </div>
+                <div class="p-4 d-flex flex-column h-100">
+                  <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                    <h3 class="font-display fs-5 fw-semibold mb-0" style="color: var(--ink)">Majifuzo</h3>
+                    <span class="tag tag-brand flex-shrink-0">Démo portfolio</span>
+                  </div>
+                  <p class="text-muted-2 mb-3" style="font-size: 0.88rem">Application desktop de gestion scolaire</p>
+                  <div class="d-flex flex-wrap gap-2 mt-auto">
+                    <span class="tag">Python</span><span class="tag">PySide6</span><span class="tag">SQLite</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- BusinessFlow -->
+            <div class="col-md-6 col-xl-4 reveal" data-categories="saas web business" data-slug="businessflow">
+              <article class="card card-hover project-card h-100" role="button" tabindex="0" aria-label="Détails du projet BusinessFlow">
+                <div class="project-cover" style="--accent: #818cf8">
+                  <span class="monogram-cover">BF</span>
+                </div>
+                <div class="p-4 d-flex flex-column h-100">
+                  <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                    <h3 class="font-display fs-5 fw-semibold mb-0" style="color: var(--ink)">BusinessFlow</h3>
+                    <span class="tag tag-brand flex-shrink-0">Démo portfolio</span>
+                  </div>
+                  <p class="text-muted-2 mb-3" style="font-size: 0.88rem">Solution de gestion d'activités commerciales</p>
+                  <div class="d-flex flex-wrap gap-2 mt-auto">
+                    <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">REST API</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- PEGUYWAX -->
+            <div class="col-md-6 col-xl-4 reveal" data-categories="desktop business" data-slug="peguywax">
+              <article class="card card-hover project-card h-100" role="button" tabindex="0" aria-label="Détails du projet PEGUYWAX Management">
+                <div class="project-cover" style="--accent: #fb7185">
+                  <span class="monogram-cover">PX</span>
+                </div>
+                <div class="p-4 d-flex flex-column h-100">
+                  <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                    <h3 class="font-display fs-5 fw-semibold mb-0" style="color: var(--ink)">PEGUYWAX Management</h3>
+                    <span class="tag tag-brand flex-shrink-0">Démo portfolio</span>
+                  </div>
+                  <p class="text-muted-2 mb-3" style="font-size: 0.88rem">Logiciel de gestion d'atelier de couture</p>
+                  <div class="d-flex flex-wrap gap-2 mt-auto">
+                    <span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">Qt</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Educ-Me -->
+            <div class="col-md-6 col-xl-4 reveal" data-categories="web education" data-slug="educ-me">
+              <article class="card card-hover project-card h-100" role="button" tabindex="0" aria-label="Détails du projet Educ-Me">
+                <div class="project-cover" style="--accent: #fbbf24">
+                  <span class="monogram-cover">EM</span>
+                </div>
+                <div class="p-4 d-flex flex-column h-100">
+                  <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                    <h3 class="font-display fs-5 fw-semibold mb-0" style="color: var(--ink)">Educ-Me</h3>
+                    <span class="tag tag-brand flex-shrink-0">Démo portfolio</span>
+                  </div>
+                  <p class="text-muted-2 mb-3" style="font-size: 0.88rem">Plateforme éducative numérique</p>
+                  <div class="d-flex flex-wrap gap-2 mt-auto">
+                    <span class="tag">Django</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- EnglishPro -->
+            <div class="col-md-6 col-xl-4 reveal" data-categories="web education saas" data-slug="englishpro">
+              <article class="card card-hover project-card h-100" role="button" tabindex="0" aria-label="Détails du projet EnglishPro">
+                <div class="project-cover" style="--accent: #a3e635">
+                  <span class="monogram-cover">EP</span>
+                </div>
+                <div class="p-4 d-flex flex-column h-100">
+                  <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+                    <h3 class="font-display fs-5 fw-semibold mb-0" style="color: var(--ink)">EnglishPro</h3>
+                    <span class="tag tag-brand flex-shrink-0">Démo portfolio</span>
+                  </div>
+                  <p class="text-muted-2 mb-3" style="font-size: 0.88rem">Plateforme de formation professionnelle en anglais</p>
+                  <div class="d-flex flex-wrap gap-2 mt-auto">
+                    <span class="tag">Django</span><span class="tag">PostgreSQL</span><span class="tag">JavaScript</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <p id="project-empty" class="text-subtle text-center mt-4 mb-0" hidden>Aucun projet dans cette catégorie.</p>
+        </div>
+      </section>
+
+      <!-- Modale unique, alimentee par les <template> ci-dessous -->
+      <div class="modal fade" id="project-modal" tabindex="-1" aria-labelledby="project-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div>
+                <h2 class="modal-title font-display fs-4 fw-semibold mb-1" id="project-modal-title">&nbsp;</h2>
+                <p class="text-subtle mb-0" id="project-modal-tagline" style="font-size: 0.9rem"></p>
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+            </div>
+            <div class="modal-body" id="project-modal-body"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenu detaille des projets : present dans le DOM, copie dans la
+           modale par le JavaScript. Sans JS, il reste lisible dans la source. -->
+      <div class="visually-hidden" aria-hidden="true">
+        <template id="tpl-schoolflow">
+          <p style="line-height: 1.8">SchoolFlow centralise la gestion complète d'un établissement scolaire&nbsp;: élèves, enseignants, classes, cours, frais de scolarité, encaissements, dépenses, reçus et rapports. L'architecture sépare une API Django/PostgreSQL d'un frontend responsive, afin de pouvoir faire évoluer le produit sans refonte.</p>
+          <div class="row g-3 my-3">
+            <div class="col-6"><div class="stat-tile"><p class="value">9</p><p class="label">modules métier</p></div></div>
+            <div class="col-6"><div class="stat-tile"><p class="value">API</p><p class="label">Django REST</p></div></div>
+          </div>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Fonctionnalités</h3>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Gestion des élèves et des inscriptions</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Gestion des enseignants et des classes</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Planification des cours</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Frais scolaires et échéances</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Encaissements et édition de reçus</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Suivi des dépenses</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Rapports financiers et scolaires</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Tableau de bord temps réel</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Gestion des utilisateurs et des rôles</li>
+          </ul>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Technologies</h3>
+          <div class="d-flex flex-wrap gap-2"><span class="tag">Python</span><span class="tag">Django</span><span class="tag">PostgreSQL</span><span class="tag">Bootstrap</span><span class="tag">JavaScript</span></div>
+        </template>
+
+        <template id="tpl-majifuzo">
+          <p style="line-height: 1.8">Majifuzo est une application de bureau destinée aux établissements qui ont besoin d'un outil local, rapide et totalement hors ligne. Elle centralise les opérations administratives et financières&nbsp;: dossiers des élèves, affectation des enseignants, suivi des cours, encaissements et rapports imprimables.</p>
+          <div class="row g-3 my-3">
+            <div class="col-6"><div class="stat-tile"><p class="value">100%</p><p class="label">hors ligne</p></div></div>
+            <div class="col-6"><div class="stat-tile"><p class="value">Qt</p><p class="label">interface native</p></div></div>
+          </div>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Fonctionnalités</h3>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Dossiers élèves et parents</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Gestion des enseignants</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Classes et affectations</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Suivi des cours et des absences</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Enregistrements des paiements</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Filtres et recherche avances</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Rapports exportables</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Tableau de bord synthétique</li>
+          </ul>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Technologies</h3>
+          <div class="d-flex flex-wrap gap-2"><span class="tag">Python</span><span class="tag">PySide6</span><span class="tag">SQLite</span><span class="tag">PostgreSQL</span><span class="tag">Qt</span></div>
+        </template>
+
+        <template id="tpl-businessflow">
+          <p style="line-height: 1.8">BusinessFlow accompagné une entreprise commerciale dans le suivi de ses opérations&nbsp;: clients, produits, ventes, stocks, dépenses et performances. Le frontend React/TypeScript consomme une API REST Django, avec des tableaux de bord analytiques mis à jour dynamiquement.</p>
+          <div class="row g-3 my-3">
+            <div class="col-6"><div class="stat-tile"><p class="value">React</p><p class="label">frontend</p></div></div>
+            <div class="col-6"><div class="stat-tile"><p class="value">REST</p><p class="label">API Django</p></div></div>
+          </div>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Fonctionnalités</h3>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Dashboard analytique</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Gestion des clients</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Catalogue produits</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Enregistrement des ventes</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Gestion du stock</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Suivi des dépenses</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Statistiques et indicateurs</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Rapports téléchargeables</li>
+          </ul>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Technologies</h3>
+          <div class="d-flex flex-wrap gap-2"><span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Django</span><span class="tag">PostgreSQL</span><span class="tag">REST API</span></div>
+        </template>
+
+        <template id="tpl-peguywax">
+          <p style="line-height: 1.8">PEGUYWAX Management suit l'intégralité d'un atelier de couture&nbsp;: catalogue de produits, modèles et patrons, stocks de tissus, commandes clients, mesures et suivi de production. L'interface Qt est pensée pour rester fluide même avec plusieurs milliers de références.</p>
+          <div class="row g-3 my-3">
+            <div class="col-6"><div class="stat-tile"><p class="value">Qt</p><p class="label">desktop natif</p></div></div>
+            <div class="col-6"><div class="stat-tile"><p class="value">7</p><p class="label">modules</p></div></div>
+          </div>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Fonctionnalités</h3>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Gestion des produits et modèles</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Suivi des stocks et des reassorts</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Gestion des commandes clients</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Fiches de mesure</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Suivi de production et de livraison</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Recherche avancée par filtres</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Rapports et exports</li>
+          </ul>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Technologies</h3>
+          <div class="d-flex flex-wrap gap-2"><span class="tag">Python</span><span class="tag">PyQt6</span><span class="tag">SQLite</span><span class="tag">Qt</span></div>
+        </template>
+
+        <template id="tpl-educ-me">
+          <p style="line-height: 1.8">Educ-Me facilite l'accès aux ressources et contenus éducatifs&nbsp;: ouvrages, cours, catégories et recherche, le tout dans un espace utilisateur personnel. L'interface reste volontairement légère pour rester utilisable sur des connexions lentes.</p>
+          <div class="row g-3 my-3">
+            <div class="col-6"><div class="stat-tile"><p class="value">Search</p><p class="label">recherche instantanée</p></div></div>
+            <div class="col-6"><div class="stat-tile"><p class="value">6</p><p class="label">entités métier</p></div></div>
+          </div>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Fonctionnalités</h3>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Bibliothèque de ressources éducatives</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Catalogue d'ouvrages et documents</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Catégories et sous-catégories</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Recherche instantanée</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Espace utilisateur personnel</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Administration des contenus</li>
+          </ul>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Technologies</h3>
+          <div class="d-flex flex-wrap gap-2"><span class="tag">Django</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">PostgreSQL</span></div>
+        </template>
+
+        <template id="tpl-englishpro">
+          <p style="line-height: 1.8">EnglishPro structure un parcours de formation en anglais&nbsp;: cours, modules, évaluations, suivi de progression et délivrance de certificats. L'espace apprenant est accompagné d'un module de paiement pour la commercialisation des parcours.</p>
+          <div class="row g-3 my-3">
+            <div class="col-6"><div class="stat-tile"><p class="value">Parcours</p><p class="label">modulaire</p></div></div>
+            <div class="col-6"><div class="stat-tile"><p class="value">Certificats</p><p class="label">automatiques</p></div></div>
+          </div>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Fonctionnalités</h3>
+          <ul class="list-unstyled d-flex flex-column gap-2 mb-0">
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Cours et modules progressifs</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Évaluations et questionnaires</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Suivi de progression apprenant</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Délivrance de certificats</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Espace apprenant personnalisé</li>
+            <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Module de paiement</li>
+          </ul>
+          <h3 class="font-display fs-6 fw-semibold mt-4 mb-3">Technologies</h3>
+          <div class="d-flex flex-wrap gap-2"><span class="tag">Django</span><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">Bootstrap</span><span class="tag">PostgreSQL</span></div>
+        </template>
+      </div>
+
+      <!-- ==================================================================
+           SERVICES
+           ================================================================== -->
+      <section id="services" class="section">
+        <div class="container-page">
+          <div class="section-head reveal">
+            <p class="eyebrow mb-0">04 &mdash; Services</p>
+            <h2 class="section-title">Ce que je peux construire pour vous</h2>
+            <p class="section-lead">
+              Du premier croquis à la mise en ligne, en passant par l'architecture et la base de
+              données.
+            </p>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-globe2" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Développement Web</h3>
+                <p class="text-muted-2 mb-4" style="font-size: 0.9rem; line-height: 1.7">Création de sites et d'applications web modernes, rapides et adaptés a votre activité.</p>
+                <div class="d-flex flex-wrap gap-2 mt-auto">
+                  <span class="tag">Sites vitrines</span><span class="tag">Applications web</span><span class="tag">Portails</span><span class="tag">Refonte UX</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-layers" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Applications SaaS</h3>
+                <p class="text-muted-2 mb-4" style="font-size: 0.9rem; line-height: 1.7">Développement de plateformes SaaS scalables, avec authentification, facturation et espaces utilisateurs.</p>
+                <div class="d-flex flex-wrap gap-2 mt-auto">
+                  <span class="tag">Multi-tenant</span><span class="tag">Abonnements</span><span class="tag">Espaces utilisateurs</span><span class="tag">Tableaux de bord</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-app-window" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Applications Desktop</h3>
+                <p class="text-muted-2 mb-4" style="font-size: 0.9rem; line-height: 1.7">Création de logiciels professionnels avec PyQt6 et PySide6, fonctionnant sans connexion internet.</p>
+                <div class="d-flex flex-wrap gap-2 mt-auto">
+                  <span class="tag">Applications Qt</span><span class="tag">Hors ligne</span><span class="tag">Export PDF/Excel</span><span class="tag">Base SQLite</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-server" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Développement Backend</h3>
+                <p class="text-muted-2 mb-4" style="font-size: 0.9rem; line-height: 1.7">APIs REST, bases de données et architectures backend solides avec Python et Django.</p>
+                <div class="d-flex flex-wrap gap-2 mt-auto">
+                  <span class="tag">APIs REST</span><span class="tag">Modélisation</span><span class="tag">Authentification</span><span class="tag">Tâches asynchrones</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-pen" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">UI/UX</h3>
+                <p class="text-muted-2 mb-4" style="font-size: 0.9rem; line-height: 1.7">Conception d'interfaces modernes, intuitives et responsive, pensées pour vos utilisateurs.</p>
+                <div class="d-flex flex-wrap gap-2 mt-auto">
+                  <span class="tag">Wireframes</span><span class="tag">Maquettes</span><span class="tag">Design systèmes</span><span class="tag">Prototypage</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card card-hover p-4 h-100">
+                <span class="skill-icon mb-3"><i class="bi bi-blocks" aria-hidden="true"></i></span>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Solutions sur mesure</h3>
+                <p class="text-muted-2 mb-4" style="font-size: 0.9rem; line-height: 1.7">Développement de logiciels sur mesure, adaptés aux processus spécifiques de votre entreprise.</p>
+                <div class="d-flex flex-wrap gap-2 mt-auto">
+                  <span class="tag">Audit du besoin</span><span class="tag">Spécifications</span><span class="tag">Développement</span><span class="tag">Maintenance</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PARCOURS
+           ================================================================== -->
+      <section id="parcours" class="section bg-canvas-alt">
+        <div class="container-page">
+          <div class="section-head reveal">
+            <p class="eyebrow mb-0">05 &mdash; Parcours</p>
+            <h2 class="section-title">Quatre domaines de compétence, une même approche</h2>
+            <p class="section-lead">
+              De l'architecture au packaging&nbsp;: chaque projet couvre la chaîne complète.
+            </p>
+          </div>
+
+          <div class="timeline position-relative d-flex flex-column gap-4 reveal">
+            <div class="position-relative ps-5">
+              <span class="d-grid position-absolute" style="left: 0; top: 1.2rem; width: 2.8rem; height: 2.8rem; place-items: center; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--brand)"><i class="bi bi-code-slash" aria-hidden="true"></i></span>
+              <div class="card p-4">
+                <h3 class="font-display fs-5 fw-semibold mb-1" style="color: var(--ink)">Développeur Full-Stack</h3>
+                <p class="text-muted-2 mb-3" style="font-size: 0.9rem; line-height: 1.7">Développement d'applications web, de plateformes SaaS et de logiciels de gestion, de la conception de l'architecture jusqu'à la mise en production.</p>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-3">
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Conception d'interfaces responsive et accessibles</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Développement frontend et backend</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Modélisation des bases de données</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Déploiement et maintenance</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Django</span><span class="tag">PostgreSQL</span><span class="tag">REST API</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="position-relative ps-5">
+              <span class="d-grid position-absolute" style="left: 0; top: 1.2rem; width: 2.8rem; height: 2.8rem; place-items: center; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--brand)"><i class="bi bi-filetype-py" aria-hidden="true"></i></span>
+              <div class="card p-4">
+                <h3 class="font-display fs-5 fw-semibold mb-1" style="color: var(--ink)">Développement Python / Django</h3>
+                <p class="text-muted-2 mb-3" style="font-size: 0.9rem; line-height: 1.7">Conception d'applications backend et d'APIs REST robustes, sécurisées et documentées.</p>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-3">
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> APIs REST avec Django REST Framework</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Authentification et gestion des rôles</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Optimisation des requêtes SQL</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Automatisation et rapports</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="tag">Python</span><span class="tag">Django</span><span class="tag">DRF</span><span class="tag">PostgreSQL</span><span class="tag">SQLite</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="position-relative ps-5">
+              <span class="d-grid position-absolute" style="left: 0; top: 1.2rem; width: 2.8rem; height: 2.8rem; place-items: center; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--brand)"><i class="bi bi-window" aria-hidden="true"></i></span>
+              <div class="card p-4">
+                <h3 class="font-display fs-5 fw-semibold mb-1" style="color: var(--ink)">Développement Desktop</h3>
+                <p class="text-muted-2 mb-3" style="font-size: 0.9rem; line-height: 1.7">Création d'applications de bureau professionnelles avec PyQt6 et PySide6, packaged et prêtes à l'emploi.</p>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-3">
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Interfaces Qt natives et fluides</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Bases de données locales</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Génération de rapports et reçus</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Packaging avec PyInstaller</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="tag">PyQt6</span><span class="tag">PySide6</span><span class="tag">Python</span><span class="tag">SQLite</span><span class="tag">Qt</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="position-relative ps-5">
+              <span class="d-grid position-absolute" style="left: 0; top: 1.2rem; width: 2.8rem; height: 2.8rem; place-items: center; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--brand)"><i class="bi bi-infinity" aria-hidden="true"></i></span>
+              <div class="card p-4">
+                <h3 class="font-display fs-5 fw-semibold mb-1" style="color: var(--ink)">Intégration &amp; DevOps</h3>
+                <p class="text-muted-2 mb-3" style="font-size: 0.9rem; line-height: 1.7">Automatisation des cycles de développement, conteneurisation et déploiement continu.</p>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-3">
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Pipelines GitHub Actions</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Conteneurisation avec Docker</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Scripts d'automatisation</li>
+                  <li class="d-flex gap-2"><i class="bi bi-check2 text-brand" aria-hidden="true"></i> Documentation technique</li>
+                </ul>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="tag">Git</span><span class="tag">GitHub Actions</span><span class="tag">Docker</span><span class="tag">CI/CD</span><span class="tag">PyInstaller</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PROCESS
+           ================================================================== -->
+      <section id="process" class="section">
+        <div class="container-page">
+          <div class="section-head reveal">
+            <p class="eyebrow mb-0">06 &mdash; Process</p>
+            <h2 class="section-title">Une méthode en six étapes, du cadrage à la maintenance</h2>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card step-card">
+                <p class="step-num mb-2">01</p>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Comprendre</h3>
+                <p class="text-muted-2 mb-3" style="font-size: 0.9rem; line-height: 1.7">Analyse du besoin et des objectifs réels du projet.</p>
+                <ul class="list-unstyled d-flex flex-column gap-1 mb-0 text-subtle" style="font-size: 0.84rem">
+                  <li>Entretien de cadrage</li><li>Analyse des processus existants</li><li>Définition des objectifs</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card step-card">
+                <p class="step-num mb-2">02</p>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Concevoir</h3>
+                <p class="text-muted-2 mb-3" style="font-size: 0.9rem; line-height: 1.7">Architecture technique et conception UI/UX.</p>
+                <ul class="list-unstyled d-flex flex-column gap-1 mb-0 text-subtle" style="font-size: 0.84rem">
+                  <li>Architecture des données</li><li>Wireframes et maquettes</li><li>Choix de la stack</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card step-card">
+                <p class="step-num mb-2">03</p>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Développer</h3>
+                <p class="text-muted-2 mb-3" style="font-size: 0.9rem; line-height: 1.7">Développement avec des technologies modernes.</p>
+                <ul class="list-unstyled d-flex flex-column gap-1 mb-0 text-subtle" style="font-size: 0.84rem">
+                  <li>Code lisible et versionné</li><li>Composants réutilisables</li><li>Revues régulières</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card step-card">
+                <p class="step-num mb-2">04</p>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Tester</h3>
+                <p class="text-muted-2 mb-3" style="font-size: 0.9rem; line-height: 1.7">Tests, optimisation et correction des erreurs.</p>
+                <ul class="list-unstyled d-flex flex-column gap-1 mb-0 text-subtle" style="font-size: 0.84rem">
+                  <li>Tests fonctionnels</li><li>Responsive et accessibilité</li><li>Optimisation des performances</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card step-card">
+                <p class="step-num mb-2">05</p>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Déployer</h3>
+                <p class="text-muted-2 mb-3" style="font-size: 0.9rem; line-height: 1.7">Mise en production et configuration.</p>
+                <ul class="list-unstyled d-flex flex-column gap-1 mb-0 text-subtle" style="font-size: 0.84rem">
+                  <li>Build automatisé</li><li>Déploiement CI/CD</li><li>Configuration des environnements</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4 reveal">
+              <div class="card step-card">
+                <p class="step-num mb-2">06</p>
+                <h3 class="font-display fs-5 fw-semibold mb-2" style="color: var(--ink)">Maintenir</h3>
+                <p class="text-muted-2 mb-3" style="font-size: 0.9rem; line-height: 1.7">Évolution et maintenance de la solution.</p>
+                <ul class="list-unstyled d-flex flex-column gap-1 mb-0 text-subtle" style="font-size: 0.84rem">
+                  <li>Corrections et mises à jour</li><li>Évolutions fonctionnelles</li><li>Support technique</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           GITHUB
+           ================================================================== -->
+      <section id="github" class="section bg-canvas-alt">
+        <div class="container-page">
+          <div class="section-head reveal">
+            <p class="eyebrow mb-0">07 &mdash; GitHub</p>
+            <h2 class="section-title">Mon activité open source</h2>
+            <p class="section-lead">
+              Données chargées en direct depuis l'API publique GitHub. Aucune clé, aucun backend.
+            </p>
+          </div>
+
+          <div class="row g-4 align-items-center">
+            <div class="col-lg-5 reveal">
+              <div class="card p-4 p-lg-5">
+                <div class="d-flex align-items-center gap-3">
+                  <span class="avatar-ring flex-shrink-0">
+                    <img id="gh-avatar" src="portrait.jpg" alt="Avatar GitHub de kabambakasongo" width="72" height="72" loading="lazy" />
+                  </span>
+                  <div>
+                    <p class="font-display fw-semibold mb-1" style="font-size: 1.1rem; color: var(--ink)">@kabambakasongo</p>
+                    <p class="text-subtle mb-0" style="font-size: 0.87rem">Full-Stack Developer &middot; Kolwezi, RDC</p>
+                  </div>
+                </div>
+
+                <div class="row g-2 mt-4">
+                  <div class="col-4">
+                    <div class="stat-tile">
+                      <p class="value mb-0" id="gh-repos">&mdash;</p>
+                      <p class="label mb-0">Dépôts</p>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="stat-tile">
+                      <p class="value mb-0" id="gh-followers">&mdash;</p>
+                      <p class="label mb-0">Abonnes</p>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="stat-tile">
+                      <p class="value mb-0" id="gh-stars">&mdash;</p>
+                      <p class="label mb-0">Étoiles</p>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="text-subtle mt-3 mb-0" style="font-size: 0.8rem" id="gh-status">
+                  <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" style="width: 0.8rem; height: 0.8rem; border-width: 2px"></span>
+                  Chargement des données GitHub&hellip;
+                </p>
+
+                <a href="https://github.com/kabambakasongo" class="btn btn-outline-kk w-100 mt-4" target="_blank" rel="noopener noreferrer">
+                  <i class="bi bi-github" aria-hidden="true"></i> Voir mon profil
+                </a>
+              </div>
+            </div>
+
+            <div class="col-lg-7 reveal">
+              <div class="card p-4 p-lg-5 h-100">
+                <h3 class="font-display fs-5 fw-semibold mb-1" style="color: var(--ink)">Technologies clés</h3>
+                <p class="text-subtle mb-4" style="font-size: 0.87rem">Les briques que j'utilise le plus.</p>
+                <div class="d-flex flex-wrap gap-2 mb-5">
+                  <span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Python</span>
+                  <span class="tag">Django</span><span class="tag">PostgreSQL</span><span class="tag">Bootstrap</span>
+                  <span class="tag">PyQt6</span><span class="tag">PySide6</span><span class="tag">Docker</span><span class="tag">Git</span>
+                </div>
+
+                <h3 class="font-display fs-5 fw-semibold mb-3" style="color: var(--ink)">Dépôts mis en avant</h3>
+                <ul class="list-unstyled d-flex flex-column gap-2 mb-0" id="gh-repos-list">
+                  <li class="text-subtle" style="font-size: 0.87rem">Aucun dépôt public à afficher pour le moment.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           CONTACT
+           ================================================================== -->
+      <section id="contact" class="section">
+        <div class="container-page">
+          <div class="section-head reveal">
+            <p class="eyebrow mb-0">08 &mdash; Contact</p>
+            <h2 class="section-title">Parlons de votre projet</h2>
+            <p class="section-lead">Réponse habituelle sous 48 h ouvertes.</p>
+          </div>
+
+          <div class="row g-4">
+            <div class="col-lg-7 reveal">
+              <!--
+                Provider du formulaire, modifiable sans build :
+                  data-provider="formspree" + data-endpoint="https://formspree.io/f/VOTRE_ID"
+                  data-provider="web3forms"  + data-access-key="VOTRE_CLE"
+                  data-provider="none"        (defaut) : le message est compose
+                                             et ouvert dans votre client e-mail.
+              -->
+              <form
+                class="card p-4 p-lg-5"
+                id="contact-form"
+                novalidate
+                data-provider="none"
+                data-endpoint=""
+                data-access-key=""
+              >
+                <div class="row g-4">
+                  <div class="col-sm-6">
+                    <label class="form-label" for="contact-name">Nom</label>
+                    <input class="form-control" id="contact-name" name="name" type="text" autocomplete="name" placeholder="Jean Mukendi" />
+                    <p class="d-none mt-1 mb-0" id="contact-name-error" style="color: #f43f5e; font-size: 0.78rem"></p>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <label class="form-label" for="contact-email">E-mail</label>
+                    <input class="form-control" id="contact-email" name="email" type="email" autocomplete="email" placeholder="jean@entreprise.cd" />
+                    <p class="d-none mt-1 mb-0" id="contact-email-error" style="color: #f43f5e; font-size: 0.78rem"></p>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label" for="contact-subject">Sujet</label>
+                    <input class="form-control" id="contact-subject" name="subject" type="text" placeholder="Plateforme de gestion scolaire" />
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label" for="contact-message">Message</label>
+                    <textarea class="form-control" id="contact-message" name="message" rows="5" placeholder="Décrivez votre besoin, votre contexte et vos delais."></textarea>
+                    <p class="d-none mt-1 mb-0" id="contact-message-error" style="color: #f43f5e; font-size: 0.78rem"></p>
+                  </div>
+                </div>
+
+                <!-- Champ piegeanti invisible : bloque les robots spam -->
+                <div aria-hidden="true" class="position-absolute overflow-hidden opacity-0" style="width: 0; height: 0">
+                  <label for="contact-website">Ne pas remplir</label>
+                  <input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+                </div>
+
+                <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mt-4">
+                  <p class="text-subtle mb-0" style="font-size: 0.8rem">
+                    Vos informations servent uniquement à traiter cette demande.
+                  </p>
+                  <button type="submit" class="btn btn-primary" id="contact-submit">
+                    <span id="contact-submit-label">Envoyer le message</span>
+                  </button>
+                </div>
+
+                <p class="mt-3 mb-0" aria-live="polite" id="contact-status" style="min-height: 1.25rem; font-size: 0.87rem"></p>
+              </form>
+            </div>
+
+            <div class="col-lg-5 reveal">
+              <div class="card p-4 p-lg-5 h-100">
+                <h3 class="font-display fs-5 fw-semibold mb-4" style="color: var(--ink)">Autres canaux</h3>
+
+                <div class="d-flex flex-column gap-3">
+                  <a class="d-flex align-items-center gap-3 text-decoration-none" href="mailto:ledouxkabamba135@gmail.com">
+                    <span class="skill-icon flex-shrink-0"><i class="bi bi-envelope" aria-hidden="true"></i></span>
+                    <span class="min-w-0">
+                      <span class="d-block text-subtle" style="font-size: 0.75rem">E-mail</span>
+                      <span class="d-block text-truncate" style="color: var(--ink); font-size: 0.9rem">ledouxkabamba135@gmail.com</span>
+                    </span>
+                  </a>
+
+                  <a class="d-flex align-items-center gap-3 text-decoration-none" href="https://wa.me/243977143354?text=Bonjour%20KABAMBA%20KASONGO%2C%20j%27ai%20vu%20votre%20portfolio%20et%20je%20souhaite%20discuter%20d%27un%20projet." target="_blank" rel="noopener noreferrer">
+                    <span class="skill-icon flex-shrink-0"><i class="bi bi-whatsapp" aria-hidden="true"></i></span>
+                    <span class="min-w-0">
+                      <span class="d-block text-subtle" style="font-size: 0.75rem">WhatsApp</span>
+                      <span class="d-block" style="color: var(--ink); font-size: 0.9rem">+243 977 143 354</span>
+                    </span>
+                  </a>
+
+                  <a class="d-flex align-items-center gap-3 text-decoration-none" href="https://github.com/kabambakasongo" target="_blank" rel="noopener noreferrer">
+                    <span class="skill-icon flex-shrink-0"><i class="bi bi-github" aria-hidden="true"></i></span>
+                    <span class="min-w-0">
+                      <span class="d-block text-subtle" style="font-size: 0.75rem">GitHub</span>
+                      <span class="d-block" style="color: var(--ink); font-size: 0.9rem">@kabambakasongo</span>
+                    </span>
+                  </a>
+
+                  <a class="d-flex align-items-center gap-3 text-decoration-none" href="https://linkedin.com/in/ledoux-kabamba-7b773a319" target="_blank" rel="noopener noreferrer">
+                    <span class="skill-icon flex-shrink-0"><i class="bi bi-linkedin" aria-hidden="true"></i></span>
+                    <span class="min-w-0">
+                      <span class="d-block text-subtle" style="font-size: 0.75rem">LinkedIn</span>
+                      <span class="d-block text-truncate" style="color: var(--ink); font-size: 0.9rem">/in/ledoux-kabamba</span>
+                    </span>
+                  </a>
+
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="skill-icon flex-shrink-0"><i class="bi bi-geo-alt" aria-hidden="true"></i></span>
+                    <span class="min-w-0">
+                      <span class="d-block text-subtle" style="font-size: 0.75rem">Localisation</span>
+                      <span class="d-block" style="color: var(--ink); font-size: 0.9rem">Kolwezi, RDC</span>
+                    </span>
+                  </div>
+                </div>
+
+                <hr class="divider-glow my-4" />
+
+                <button type="button" class="btn btn-outline-kk w-100" id="copy-email" data-copy="ledouxkabamba135@gmail.com">
+                  <i class="bi bi-clipboard" aria-hidden="true"></i> Copier l'adresse e-mail
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ====================================================================
+         PIED DE PAGE
+         ==================================================================== -->
+    <footer class="mt-4" style="border-top: 1px solid var(--line); background: color-mix(in oklab, var(--canvas-alt) 60%, transparent)">
+      <div class="container-page py-5">
+        <div class="row g-5">
+          <div class="col-lg-5">
+            <div class="d-flex align-items-center gap-2">
+              <span
+                class="d-grid place-items-center flex-shrink-0 font-display fw-bold"
+                style="width: 2.25rem; height: 2.25rem; border-radius: 0.7rem; font-size: 0.85rem; color: var(--brand-contrast); background: var(--brand)"
+                >KK</span
+              >
+              <div>
+                <p class="font-display fw-semibold mb-0" style="font-size: 0.95rem; color: var(--ink)">KABAMBA KASONGO</p>
+                <p class="eyebrow mb-0" style="font-size: 0.68rem">Full-Stack Developer</p>
+              </div>
+            </div>
+
+            <p class="text-muted-2 mt-3 mb-0" style="max-width: 26rem; font-size: 0.9rem; line-height: 1.75">
+              Je conçois et développe des applications web modernes, des plateformes SaaS et des
+              solutions digitales performantes adaptées aux besoins des entreprises.
+            </p>
+
+            <p class="d-flex align-items-center gap-2 text-muted-2 mt-3 mb-0" style="font-size: 0.9rem">
+              <i class="bi bi-geo-alt text-brand" aria-hidden="true"></i>
+              Kolwezi, République Démocratique du Congo
+            </p>
+          </div>
+
+          <div class="col-6 col-lg-3">
+            <p class="eyebrow mb-3">Navigation</p>
+            <ul class="list-unstyled d-grid gap-2 mb-0" style="font-size: 0.88rem">
+              <li><a class="text-decoration-none text-muted-2" href="#apropos">À propos</a></li>
+              <li><a class="text-decoration-none text-muted-2" href="#competences">Compétences</a></li>
+              <li><a class="text-decoration-none text-muted-2" href="#projets">Projets</a></li>
+              <li><a class="text-decoration-none text-muted-2" href="#services">Services</a></li>
+              <li><a class="text-decoration-none text-muted-2" href="#parcours">Parcours</a></li>
+              <li><a class="text-decoration-none text-muted-2" href="#process">Process</a></li>
+              <li><a class="text-decoration-none text-muted-2" href="#github">GitHub</a></li>
+              <li><a class="text-decoration-none text-muted-2" href="#contact">Contact</a></li>
+            </ul>
+          </div>
+
+          <div class="col-6 col-lg-4">
+            <p class="eyebrow mb-3">Réseaux</p>
+            <div class="d-flex flex-wrap gap-2">
+              <a class="icon-btn" href="https://github.com/kabambakasongo" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub"><i class="bi bi-github" aria-hidden="true"></i></a>
+              <a class="icon-btn" href="https://linkedin.com/in/ledoux-kabamba-7b773a319" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn"><i class="bi bi-linkedin" aria-hidden="true"></i></a>
+              <a class="icon-btn" href="mailto:ledouxkabamba135@gmail.com" aria-label="E-mail" title="E-mail"><i class="bi bi-envelope" aria-hidden="true"></i></a>
+              <a class="icon-btn" href="https://wa.me/243977143354" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+              <button type="button" class="icon-btn" id="share-btn" aria-label="Partager le portfolio" title="Partager"><i class="bi bi-share" aria-hidden="true"></i></button>
+            </div>
+            <p class="text-subtle mt-3 mb-0" style="font-size: 0.85rem">Conçu et développé en HTML, CSS et Bootstrap.</p>
+          </div>
+        </div>
+
+        <hr class="divider-glow my-5" />
+
+        <div class="d-flex flex-column flex-sm-row align-items-center justify-content-between gap-2 text-center">
+          <p class="text-subtle mb-0" style="font-size: 0.78rem">&copy; 2026 KABAMBA KASONGO. Tous droits réservés.</p>
+          <p class="text-subtle font-mono mb-0" style="font-size: 0.78rem">Kolwezi &middot; République Démocratique du Congo</p>
+        </div>
+      </div>
+    </footer>
+
+    <button type="button" class="icon-btn back-to-top" id="back-to-top" aria-label="Retour en haut">
+      <i class="bi bi-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
 </html>

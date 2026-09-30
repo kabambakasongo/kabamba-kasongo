@@ -1,368 +1,329 @@
-# KABAMBA KASONGO — Portfolio Full-Stack
+# KABAMBA KASONGO — Portfolio
 
 Portfolio personnel de **KABAMBA KASONGO**, développeur Full-Stack basé à
 **Kolwezi, République Démocratique du Congo**.
 
-Application 100 % statique (React + TypeScript + Vite + Tailwind CSS),
-conçue pour être hébergée sur **GitHub Pages** : aucun backend, aucune base de
-données, aucune clé secrète.
+Site **100 % statique** : HTML, CSS et JavaScript natifs, complétés par
+Bootstrap 5.3.8 et Bootstrap Icons 1.13.1 **embarqués dans le dépôt**.
 
-- Mode sombre par défaut, mode clair disponible
-- Navigation active selon la section, animations au défilement
-- Contenu entièrement piloté par des fichiers de données
-- SEO complet (métadonnées, Open Graph, Schema.org, `robots.txt`, `sitemap.xml`)
-- Accessible (navigation clavier, `aria-*`, contrastes conformes WCAG AA)
+- **Aucune dépendance distante** (CDN, Google Fonts, frameworks externes) :
+  polices, icônes et bibliothèques sont dans le dépôt
+- **Aucune étape de build** : pas de `npm install`, pas de bundler, pas de
+  compilation
+- **Deux requêtes externes facultatives**, déjà prévues et tolérantes à un
+  blocage : l'API GitHub publique et l'avatar hébergé par GitHub
+- **Aucun backend, aucune base de données, aucune clé secrète, aucun cookie**
+- Hébergeable tel quel sur **GitHub Pages**, y compris depuis la racine du dépôt
 
 ---
 
-## 1. Démarrage rapide
+## 1. Démarrage
+
+Il n'y a rien à installer. Deux options :
 
 ```bash
-npm install     # installation des dépendances
-npm run dev     # http://localhost:5173
+# 1. Ouvrir directement le fichier
+start index.html
+
+# 2. Servir le dossier (recommandé : requis pour l'API GitHub)
+python -m http.server 8080   # puis http://localhost:8080
 ```
 
-Commandes disponibles :
-
-| Commande            | Description                                                                                |
-| ------------------- | ------------------------------------------------------------------------------------------ |
-| `npm run dev`       | Serveur de développement avec rechargement à chaud                                         |
-| `npm run build`     | Génère les fichiers SEO, compile vers `dist/` puis injecte l'URL publique                  |
-| `npm run preview`   | Prévisualise le build de production en local                                               |
-| `npm run typecheck` | Vérification TypeScript stricte                                                            |
-| `npm run lint`      | Analyse ESLint                                                                             |
-| `npm run format`    | Formatage Prettier                                                                         |
-| `npm run smoke`     | Rendu serveur de toutes les sections + contrôle de contenu                                 |
-| `npm run verify`    | Contrôle du build dans un vrai navigateur (rendu, responsive, accessibilité, interactions) |
+> Un serveur local est préférable à `file://` : le navigateur bloque les
+> requêtes `fetch` vers une API externe depuis un fichier local, la section
+> GitHub resterait donc muette. Sous VS Code, l'extension *Live Server* fait
+> le même travail.
 
 ---
 
-## 2. Configuration
+## 2. Contenu du dépôt
 
-### 2.1 Informations personnelles
+| Fichier / dossier                | Rôle                                                        |
+| -------------------------------- | ----------------------------------------------------------- |
+| `index.html`                     | La page unique : contenu, métadonnées, données structurées  |
+| `404.html`                       | Page d'erreur 404 (liens absolus : fonctionne à toute URL)  |
+| `assets/css/main.css`            | Design tokens, thème clair/sombre, composants, animations   |
+| `assets/js/main.js`              | Comportements : thème, menu, filtres, modale, formulaire     |
+| `assets/fonts/`                  | Space Grotesk, Inter, JetBrains Mono (sous-ensemble latin)   |
+| `vendor/bootstrap/`              | Bootstrap 5.3.8 (CSS + JS)                                  |
+| `vendor/bootstrap-icons/`        | Bootstrap Icons 1.13.1 (police + CSS)                       |
+| `favicon.svg`                    | Monogramme KK                                               |
+| `og-image.svg`                   | Aperçu réseaux sociaux 1200 × 630                           |
+| `portrait.jpg`                   | Portrait (800 × 800, ~120 Ko)                               |
+| `manifest.webmanifest`           | Nom, icône et couleurs de l'application installée           |
+| `robots.txt` / `sitemap.xml`     | Référencement                                               |
+| `.nojekyll`                      | Empêche GitHub Pages de traiter le dossier avec Jekyll      |
 
-Tout ce qui vous concerne est centralisé dans **`src/config/profile.ts`** :
+---
 
-```ts
-export const profile = {
-  name: 'KABAMBA KASONGO',
-  role: 'Full-Stack Developer',
-  location: 'Kolwezi, République Démocratique du Congo',
+## 3. Mes informations
 
-  github: '',     // votre identifiant GitHub (surchargeable par VITE_GITHUB_USERNAME)
-  linkedin: '',   // URL complète de votre profil LinkedIn
-  email: '',      // adresse e-mail publique
-  whatsapp: '',   // numéro au format international, chiffres uniquement
-  ...
-};
-```
+Il n'y a **pas de fichier de configuration** : tout est dans `index.html` (et
+`assets/js/main.js` pour deux valeurs). C'est le prix de la simplicité — en
+revanche, un simple *rechercher-remplacer* suffit.
 
-**Aucune coordonnée n'est inventée.** Les champs laissés vides sont
-automatiquement masqués dans l'interface : aucun lien mort, aucun contenu
-factice. Renseignez uniquement des informations réelles.
+| Information             | Où la remplacer                                                |
+| ----------------------- | -------------------------------------------------------------- |
+| Adresse e-mail          | `index.html` + `CONTACT_EMAIL` et `data-copy` dans `main.js`   |
+| Numéro WhatsApp         | `index.html` (lien `wa.me/…` **et** numéro affiché)            |
+| Identifiant GitHub      | `index.html` + `GITHUB_USER` dans `main.js`                    |
+| Lien LinkedIn           | `index.html`                                                    |
+| Portrait                | Remplacer `portrait.jpg` (garder un format carré)              |
+| Statistiques (06, 29…)  | Section « À propos »                                           |
+| Badge de disponibilité  | Section Hero                                                   |
+| Délai de réponse (48 h) | Sections Hero et Contact                                       |
 
-Champs utiles :
-
-| Champ               | Effet                                                                      |
-| ------------------- | -------------------------------------------------------------------------- |
-| `github`            | Active la section GitHub et récupère les statistiques publiques (API)      |
-| `email`             | Active le bouton « Me contacter », la copie d'e-mail et le lien `mailto:`  |
-| `whatsapp`          | Active le lien WhatsApp (message pré-rempli)                               |
-| `linkedin`          | Affiche l'icône LinkedIn                                                   |
-| `cvUrl`             | Affiche le bouton « Télécharger mon CV » (PDF dans `public/`)              |
-| `photo`             | Image de la Hero (fichier dans `public/`)                                  |
-| `yearsOfExperience` | Affiche la 4ᵉ statistique ; la carte reste masquée si la valeur est `null` |
-| `availability`      | Texte du badge de disponibilité en haut de la page                         |
-
-### 2.2 Variables d'environnement
-
-Copiez `.env.example` vers `.env` et renseignez ce qui est nécessaire.
-**Toutes les variables sont optionnelles.**
+Vérifier qu'un remplacement a bien été appliqué partout :
 
 ```bash
-cp .env.example .env
+# sur Windows PowerShell
+Select-String -Path index.html, assets/js/main.js -Pattern "ledouxkabamba135"
 ```
 
-| Variable                | Rôle                                                               |
-| ----------------------- | ------------------------------------------------------------------ |
-| `SITE_URL`              | URL publique du site : robots.txt, sitemap.xml, 404 et balises SEO |
-| `VITE_SITE_URL`         | Même URL, lue par l'application (balises SEO à l'exécution)        |
-| `VITE_BASE_PATH`        | `./` (défaut, portable) ou `/` pour un domaine custom              |
-| `VITE_GITHUB_USERNAME`  | Identifiant GitHub, prioritaire sur le champ `github` du profil    |
-| `VITE_CONTACT_PROVIDER` | `none` (défaut), `web3forms`, `formspree` ou `emailjs`             |
-
-Ces mêmes variables peuvent être définies comme **variables d'environnement
-(ou « Repository variables ») dans GitHub** pour piloter le déploiement
-sans toucher au code.
-
-> **Aucune URL n'est devinée par le projet.** `index.html` ne contient aucun
-> domaine en dur : il utilise le jeton `__SITE_URL__`, remplacé au build par
-> `scripts/inject-seo.mjs` à partir de `SITE_URL` (canonical, Open Graph,
-> Twitter Card et JSON-LD tous alignés). Si `SITE_URL` est absent, le
-> build utilise le domaine réservé `votre-url-github-pages.example` et
-> affiche un avertissement ; l'application utilise alors l'adresse réellement
-> visitée. Le workflow GitHub Pages renseigne `SITE_URL` automatiquement.
+**Ne jamais inventer de coordonnées.** Si une information n'est pas réelle,
+retirez simplement le bloc correspondant : aucun lien mort ne subsiste.
 
 ---
 
-## 3. Formulaire de contact
+## 4. Ajouter ou modifier un projet
 
-GitHub Pages n'offre aucun backend : l'envoi passe par un service externe
-compatible statique. **L'intégration est optionnelle** — sans configuration,
-le portfolio affiche automatiquement les canaux directs (e-mail, WhatsApp).
+Un projet se décrit à **trois endroits** de `index.html` :
 
-### Web3Forms (recommandé)
+1. **La carte** dans `#project-grid` :
 
-1. Créez une clé publique sur [web3forms.com](https://web3forms.com).
-2. Dans `.env` :
+   ```html
+   <div class="col-md-6 col-xl-4 reveal" data-categories="saas web" data-slug="mon-projet">
+     <article class="card card-hover project-card h-100" role="button" tabindex="0"
+              aria-label="Détails du projet Mon Projet">
+       <div class="project-cover" style="--accent: #ff6a3d">
+         <span class="monogram-cover">MP</span>
+       </div>
+       <div class="p-4 d-flex flex-column h-100">
+         <h3 class="font-display fs-5 fw-semibold mb-0" style="color: var(--ink)">Mon Projet</h3>
+         <p class="text-muted-2 mb-3" style="font-size: 0.88rem">Phrase courte affichée sur la carte</p>
+         <div class="d-flex flex-wrap gap-2 mt-auto">
+           <span class="tag">Python</span><span class="tag">Django</span>
+         </div>
+       </div>
+     </article>
+   </div>
+   ```
 
-```bash
-VITE_CONTACT_PROVIDER=web3forms
-VITE_WEB3FORMS_ACCESS_KEY=votre_cle_publique
-```
+2. **Le modèle de détail** `<template id="tpl-mon-projet">` : description,
+   chiffres clés, fonctionnalités, technologies. Le `slug` du `<template>`
+   doit correspondre au `data-slug` de la carte.
 
-### Formspree
+3. **La phrase de sous-titre** dans l'objet `taglines` de `main.js`
+   (utilisée dans l'en-tête de la modale).
 
-```bash
-VITE_CONTACT_PROVIDER=formspree
-VITE_FORMSPREE_ENDPOINT=https://formspree.io/f/votre_id
-```
+Les filtres de la barre de filtres correspondent aux valeurs listées dans
+`data-categories`. Pour **retirer** un projet, supprimer les points 1 et 2 ;
+pour **le masquer temporairement**, retirer sa catégorie des filtres.
 
-### EmailJS
-
-```bash
-VITE_CONTACT_PROVIDER=emailjs
-VITE_EMAILJS_SERVICE_ID=service_xxx
-VITE_EMAILJS_TEMPLATE_ID=template_xxx
-VITE_EMAILJS_PUBLIC_KEY=cle_publique
-```
-
-Toutes ces clés sont **publiques par conception** : aucun secret n'est stocké
-dans le dépôt, le script EmailJS étant chargé à la demande.
-
----
-
-## 4. Contenu : projets, compétences, services
-
-### Ajouter un projet
-
-Ajoutez un objet dans **`src/data/projects.ts`** :
-
-```ts
-{
-  slug: 'mon-projet',
-  name: 'Mon Projet',
-  tagline: 'Phrase courte affichée sur la carte',
-  description: 'Description complète affichée dans la fenêtre de détail.',
-  categories: ['SaaS', 'Web'],
-  technologies: ['React', 'Django'],
-  features: ['Fonctionnalité 1', 'Fonctionnalité 2'],
-  year: '2026',
-  disclosure: 'portfolio-demo',   // 'portfolio-demo' | 'personal' | 'client'
-  accent: 'ember',                // ember | gold | teal | indigo | rose | lime
-  github: '',
-  demo: '',
-  featured: true,
-}
-```
-
-Les filtres de la section **Projets** se recalculent automatiquement à partir
-des catégories utilisées.
-
-> `disclosure: 'portfolio-demo'` ajoute un badge « Démo portfolio » sur la carte
-> et une explication dans la fenêtre de détail. Utilisez-le pour tout projet qui
-> n'est pas une réalisation client réelle.
-
-### Compétences
-
-**`src/data/skills.ts`** — `level` (1 à 5) pilote l'affichage en pastilles.
-Ajustez les niveaux à votre expérience réelle.
-
-### Services et parcours
-
-- **`src/data/services.ts`** : les prestations proposées.
-- **`src/data/experience.ts`** : les domaines de compétence. Renseignez
-  `company` et `period` pour afficher une expérience professionnelle datée
-  (laisser vide plutôt que d'inventer).
-- **`src/data/process.ts`** : les étapes de la méthode de travail.
-
-### Navigation et SEO
-
-**`src/config/site.ts`** : métadonnées, liste de navigation, provider du
-formulaire de contact.
+> Les cartes portent le badge « Démo portfolio » lorsqu'il s'agit d'une
+> démonstration et non d'une réalisation réelle. À retirer pour un vrai
+> client, et à remplacer par une mention de rôle (`Conçu et développé par…`).
 
 ---
 
-## 5. Images et fichiers personnels
+## 5. Formulaire de contact
 
-Placez-les dans `public/` :
+GitHub Pages n'offre aucun backend : l'envoi passe soit par le client de
+messagerie du visiteur, soit par un service externe compatible statique. Le
+choix se fait sur le `<form id="contact-form">`, **sans toucher au JavaScript** :
 
-```
-public/
-├── portrait.jpg        # portrait professionnel (carré, 800x800 mini)
-├── cv.pdf              # CV (renommer et mettre à jour profile.cvUrl)
-├── favicon.svg         # monogramme KK
-├── og-image.svg        # aperçu réseaux sociaux (voir section 7)
-├── robots.txt          # généré au build
-├── sitemap.xml         # généré au build
-└── 404.html            # généré au build depuis scripts/404.template.html
+```html
+<form id="contact-form" novalidate
+      data-provider="none"      <!-- ou "web3forms", ou "formspree" -->
+      data-endpoint=""          <!-- endpoint Formspree si utilisé -->
+      data-access-key="">       <!-- clé publique Web3Forms si utilisée -->
 ```
 
-Le portrait `public/portrait.jpg` est généré depuis `images/profil.png` (carré,
-redimensionné en 1000x1000, ~120 Ko). Pour le remplacer, depositionnez votre
-photo dans `public/` puis changez `profile.photo` dans
-`src/config/profile.ts`.
+| `data-provider` | Comportement                                                    |
+| --------------- | --------------------------------------------------------------- |
+| `none`          | **Défaut.** Compose le message et l'ouvre dans le client e-mail |
+| `formspree`     | `POST` JSON vers `data-endpoint`                                |
+| `web3forms`     | `POST` JSON vers `api.web3forms.com` avec `data-access-key`     |
+
+Le formulaire valide le nom, l'e-mail et la longueur du message, et contient
+un champ piège anti-spam (`#contact-website`, invisible). Les clés de services
+externes sont **publiques par conception** : aucun secret dans le dépôt.
 
 ---
 
-## 6. Déploiement sur GitHub Pages
+## 6. Identité visuelle
 
-Le projet utilise **GitHub Actions** (`.github/workflows/deploy.yml`) :
-à chaque `push` sur `main`, les dépendances sont installées, le site est
-compilé et publié automatiquement.
-
-### Mise en place
-
-1. Poussez le projet sur un repository GitHub.
-2. **Settings → Pages → Build and deployment → Source : _GitHub Actions_**.
-3. Poussez sur `main` : le site est publié sur
-   `https://<utilisateur>.github.io/<repository>/`.
-
-Le workflow détecte automatiquement l'URL publique (site utilisateur ou site
-projet) et la transmet au build pour générer `robots.txt` et `sitemap.xml`.
-
-### Domaine personnalisé
-
-Créez un fichier `public/CNAME` contenant votre domaine
-(ex. `kabamba.dev`), puis configurez les enregistrements DNS chez votre
-hébergeur. Pour un domaine à la racine, définissez `VITE_BASE_PATH=/` en
-variable d'environnement du repository.
-
-### Déploiement manuel
-
-```bash
-npm run build
-npx gh-pages -d dist   # alternative hors GitHub Actions
-```
-
-> Le fichier `public/.nojekyll` est présent : il empêche GitHub Pages de
-> traiter le dossier `dist` avec Jekyll.
-
----
-
-## 7. SEO et performance
-
-- **Métadonnées** : `index.html` (title, description, Open Graph, Twitter Card,
-  mots-clés) + `src/config/site.ts`.
-- **Données structurées** : une seule entité Schema.org de type `Person`,
-  déclarée dans `index.html` et complétée au build par l'URL publique réelle.
-- **URL publique centralisée** : `index.html` ne contient aucun domaine en dur,
-  uniquement le jeton `__SITE_URL__`. `scripts/generate-seo.mjs` (avant build)
-  génère `robots.txt`, `sitemap.xml` et `404.html` ; `scripts/inject-seo.mjs`
-  (après build) injecte l'URL dans le canonical, l'Open Graph, le Twitter Card
-  et le JSON-LD. Les deux scripts lisent la même configuration
-  (`scripts/lib/site-env.mjs`).
-  Le modèle de la page 404 est `scripts/404.template.html` : le jeton
-  `__BASE_URL__` est remplacé par l'URL absolue du site, ce qui garantit que
-  ses liens fonctionnent quelle que soit la profondeur de l'URL demandée.
-- **Performance** : code splitting (React, Framer Motion et application
-  séparés), polices chargées de façon non bloquante, `preconnect`,
-  visuels générés en CSS (aucune image lourde), _tree-shaking_ des icônes,
-  animations désactivées si le navigateur les refuse.
-- **Open Graph** : `public/og-image.svg` est fourni. Twitter, Facebook et
-  LinkedIn n'acceptant pas toujours le format SVG, exportez une version
-  **PNG 1200 × 630** et remplacez la balise `og:image` dans `index.html`.
-
----
-
-## 8. Accessibilité et animations
-
-- Structure sémantique (`header`, `nav`, `main`, `section`, `footer`),
-  lien d'évitement, `aria-current` sur la navigation active.
-- Fenêtres de dialogue avec piège de focus, fermeture par `Escape` et
-  restitution du focus (`src/components/ui/Modal.tsx`).
-- Formulaire avec `aria-invalid`, messages d'erreur liés et région `aria-live`.
-- Contrastes conformes WCAG AA dans les deux thèmes.
-- `prefers-reduced-motion` est respecté : les animations d'apparition et de
-  défilement sont désactivées, le contenu reste immédiatement visible.
-- Mode sans JavaScript : le contenu reste lisible (styles `noscript`).
-
----
-
-## 9. Responsive
-
-Testé et ajusté pour **320, 375, 425, 768, 1024, 1440 et 1920 px**.
-Menu mobile pleine largeur, grilles adaptatives, cibles tactiles d'au moins
-40 px, aucune barre de défilement horizontale.
-
----
-
-## 10. Structure du projet
-
-```
-src/
-├── components/
-│   ├── contact/     # formulaire de contact
-│   ├── layout/      # Navbar, Footer, fond global
-│   ├── projects/    # carte, visuel et fenêtre de détail des projets
-│   ├── sections/    # Hero, About, Skills, Projects, Services,
-│   │                # Experience, Process, Github, Contact
-│   └── ui/          # Button, Section, Reveal, Modal, Tag, ThemeToggle…
-├── config/          # profile.ts (vous), site.ts (SEO, navigation)
-├── data/            # projects, skills, services, experience, process, stats
-├── hooks/           # useTheme, useActiveSection, useToast, useGithubStats…
-├── types/           # types TypeScript partagés
-├── utils/           # cn, seo (métadonnées, partage, copie)
-├── App.tsx
-├── main.tsx
-└── index.css        # design tokens, thème clair/sombre, animations
-
-scripts/
-├── lib/site-env.mjs   # configuration de déploiement partagée (SITE_URL, base path)
-├── generate-seo.mjs   # robots.txt, sitemap.xml, 404.html (avant build)
-├── inject-seo.mjs     # injection de l'URL publique dans dist/index.html (après build)
-├── 404.template.html  # modèle de la page 404
-├── ssr-smoke.mjs      # rendu serveur : vérifie le contenu de toutes les sections
-└── browser-check.mjs  # contrôle du build dans Edge headless (DevTools)
-```
-
-> L'application est une **page unique** : pas de routeur, pas d'historique
-> parasite, et des liens d'ancrage partageables (`/#contact`).
-
-> **Thème** : sombre par défaut, conformément à l'identité visuelle. Le choix
-> est mémorisé dans `localStorage` dès que vous basculez.
-
----
-
-## 11. Personnaliser l'identité visuelle
-
-Tout est centralisé dans `src/index.css` :
+Tout est centralisé dans `assets/css/main.css` :
 
 ```css
-:root {
-  /* thème clair  */
-  --brand: #e2551b;
+:root {            /* thème clair */
+  --brand: #bf4310;   /* orange assez profond pour passer AA sur blanc */
   --accent: #0d8b80;
 }
 
-.dark {
-  /* thème sombre (défaut) */
+.dark {            /* thème sombre (défaut) */
   --brand: #ff8a4c;
   --accent: #4fd6c5;
 }
 ```
 
-- Couleurs, rayons et typographie : variables `--color-*` dans `@theme`.
-- Polices : `Space Grotesk` (titres), `Inter` (texte), `JetBrains Mono` (code) —
-  lien `<link>` dans `index.html`.
-- Palette des visuels de projets : `ACCENTS` dans
-  `src/components/projects/ProjectCover.tsx`.
-- Animations : keyframes dans `src/index.css` (`.card`, `.card-hover`,
-  `.glass`, `.text-gradient`, `.halo`…).
+- **Couleurs, rayons, typographie** : variables `--canvas`, `--surface`,
+  `--ink`, `--line`… puis reportées sur les variables Bootstrap
+  (`--bs-body-bg`, `--bs-primary`…) : une seule bascule de classe suffit à
+  réaligner tous les composants.
+- **Polices** : `assets/fonts/`. Pour en changer, déposer les fichiers
+  `.woff2` et modifier les blocs `@font-face` en tête de `main.css`.
+- **Couleur d'un projet** : l'attribut `style="--accent: #…"` de sa carte. Ces
+  teintes sont pensées pour le thème sombre ; en thème clair, `main.css` les
+  assombrit automatiquement (`color-mix`) pour rester lisibles sur fond blanc.
+- **Animations** : keyframes en section 6 de `main.css`.
+
+Le mode sombre est appliqué **avant le premier rendu** par un script en tête
+de `index.html` : aucun flash au chargement. Le choix est mémorisé dans
+`localStorage` (`kk-theme`) et la balise `theme-color` suit.
 
 ---
 
-## 12. Licence
+## 7. SEO
 
-Code source mis à disposition pour usage personnel.
-Remplacez la mention du fichier `LICENSE` par celle de votre choix.
+`index.html` porte le titre, la description, les mots-clés, Open Graph,
+Twitter Card et une entité Schema.org `Person`. Le contenu est 100 % statique :
+aucune URL n'est devinée, mais l'URL publique est écrite en dur à **cinq
+endroits**. Pour changer de domaine, tous sont à mettre à jour :
+
+| Fichier               | Ce qu'il contient                                        |
+| --------------------- | --------------------------------------------------------- |
+| `index.html`          | `canonical`, `og:url`, `og:image`, `twitter:image`, JSON-LD |
+| `robots.txt`          | `Sitemap:`                                               |
+| `sitemap.xml`         | `<loc>`                                                   |
+| `404.html`            | `favicon`, CSS et boutons (liens absolus)                 |
+
+> **Open Graph** : `og-image.svg` est un SVG. Twitter, Facebook et LinkedIn
+> l'acceptent de façon inégale : exportez une version **PNG 1200 × 630** et
+> remplacez l'URL dans `og:image` et `twitter:image`.
+
+---
+
+## 8. Déploiement sur GitHub Pages
+
+Le site n'a pas de build : **GitHub Pages publie directement le contenu de la
+branche**, sans workflow ni artefacts.
+
+1. Poussez le dépôt sur GitHub.
+2. **Settings → Pages → Build and deployment → Source : _Deploy from a
+   branch_**, branche `main`, dossier `/ (root)`**.
+3. Enregistrez : le site est publié sur
+   `https://<utilisateur>.github.io/<repository>/` en quelques secondes.
+
+<details>
+<summary>Si vos Pages sont configurées sur « GitHub Actions »</summary>
+
+Il faut soit repasser en mode branche (ci-dessus), soit restaurer un
+workflow minimal qui publie la racine du dépôt :
+
+```yaml
+name: Deploy
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+</details>
+
+**Domaine personnalisé** : créez un fichier `CNAME` à la racine contenant
+votre domaine, puis configurez les enregistrements DNS chez votre hébergeur.
+Les chemins sont tous relatifs, le site fonctionne donc à la racine comme dans
+un sous-dossier.
+
+---
+
+## 9. Accessibilité et animations
+
+- Structure sémantique (`header`, `nav`, `main`, `section`, `footer`), lien
+  d'évitement, `aria-current` implicite via `.is-active` sur la navigation.
+- Les cartes de projet sont des boutons : ouverture au clic **et** à
+  `Entrée` / `Espace`. La modale piège le focus, se ferme par `Échap` et
+  restitue le focus à la carte d'origine.
+- Formulaire : erreurs liées au champ (`aria-describedby` implicite via les
+  identifiants), bouton désactivé pendant l'envoi, région `aria-live`.
+- Contrastes conformes WCAG AA dans les deux thèmes.
+- `prefers-reduced-motion` est respecté : apparitions, bandeau rotatif,
+  défilement fluide et marée sont désactivés, le contenu reste visible.
+- Sans JavaScript : le contenu reste lisible, la navigation par ancres
+  fonctionne, seule la modale de détail est inopérante.
+
+---
+
+## 10. Responsive
+
+Conçu et vérifié pour **375, 425, 768, 1024, 1440 et 1920 px** : menu mobile en
+panneau plein écran, grilles Bootstrap qui se replient, cibles tactiles d'au
+moins 40 px, aucune barre de défilement horizontale.
+
+---
+
+## 11. Structure
+
+```
+.
+├── index.html               page unique + données structurées
+├── 404.html                 page d'erreur
+├── robots.txt / sitemap.xml
+├── manifest.webmanifest
+├── favicon.svg / og-image.svg / portrait.jpg
+├── assets/
+│   ├── css/main.css         tokens, thème, composants, animations
+│   ├── js/main.js           thème, menu, filtres, modale, formulaire, GitHub
+│   └── fonts/               3 woff2 (latin)
+└── vendor/
+    ├── bootstrap/           5.3.8
+    └── bootstrap-icons/     1.13.1
+```
+
+> L'application est une **page unique** : pas de routeur, pas d'historique
+> parasite, des liens d'ancrage partageables (`/#contact`).
+
+---
+
+## 12. Ce que le projet ne contient pas
+
+Par choix, et pour que ce dépôt reste auditable d'un bout à l'autre :
+
+- ni build, ni bundler, ni `node_modules` ;
+- ni dépendance distante (CDN, Google Fonts, Frameworks externes) ;
+- ni backend, ni base de données, ni secret ;
+- ni traqueur, ni cookie, ni service d'analyse d'audience.
+
+Les seules requêtes sortantes sont l'appel à l'API **publique** GitHub
+(`api.github.com`) et l'image d'avatar que GitHub héberge
+(`avatars.githubusercontent.com`). Elles échouent sans conséquence si le
+visiteur les bloque : le site reste entièrement lisible et navigable.
+
+---
+
+## 13. Licence
+
+Code source mis à disposition pour usage personnel. Le dépôt ne contient pas
+de fichier `LICENSE` : ajoutez-le si vous souhaitez fixer une licence explicite
+avant toute diffusion publique.
