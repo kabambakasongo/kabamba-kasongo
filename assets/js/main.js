@@ -374,6 +374,8 @@
     peguywax: "Logiciel de gestion d'atelier de couture",
     'educ-me': 'Plateforme éducative numérique',
     englishpro: 'Plateforme de formation professionnelle en anglais',
+    manono: "Site corporate multilingue d'une société minière",
+    lcs: "Site corporate multilingue d'une fonderie de cuivre",
   };
 
   function openProject(slug, trigger) {
