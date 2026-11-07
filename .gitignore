@@ -16,3 +16,6 @@ desktop.ini
 # Journal et debris de build (aucun build dans ce projet, precaution)
 *.log
 *.tsbuildinfo
+
+# Outils de verification lances a la demande (npx)
+node_modules/

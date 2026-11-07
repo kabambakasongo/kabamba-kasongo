@@ -1,0 +1,63 @@
+name: Quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  html:
+    name: Validation HTML
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: html-validate
+        run: npx --yes html-validate@9 index.html 404.html cv-fr.html cv-en.html
+
+  links:
+    name: Liens
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --accept 200,206,429,999 index.html 404.html cv-fr.html cv-en.html README.md
+          fail: true
+
+  accessibility:
+    name: Accessibilité (pa11y)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: pa11y-ci
+        run: |
+          npx --yes http-server . -p 8080 --silent &
+          SERVER_PID=$!
+          sleep 3
+          npx --yes pa11y-ci@4 --config .pa11yci
+          STATUS=$?
+          kill "$SERVER_PID" || true
+          exit "$STATUS"
+
+  lighthouse:
+    name: Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          staticDistDir: ./
+          uploadArtifacts: true
+          temporaryPublicStorage: true

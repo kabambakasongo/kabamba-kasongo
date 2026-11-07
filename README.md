@@ -1,7 +1,10 @@
 # KABAMBA KASONGO — Portfolio
 
-Portfolio personnel de **KABAMBA KASONGO**, développeur Full-Stack basé à
-**Kolwezi, République Démocratique du Congo**.
+Portfolio personnel de **KABAMBA KASONGO**, **formateur ERP & développeur
+Full-Stack** basé à **Kolwezi, République Démocratique du Congo**. Le site
+présente les deux activités : formations aux ERP (SAP S/4HANA, Odoo, Sage,
+Microsoft Dynamics, paie et droit social) et conception d'applications web,
+SaaS et de gestion.
 
 Site **100 % statique** : HTML, CSS et JavaScript natifs, complétés par
 Bootstrap 5.3.8 et Bootstrap Icons 1.13.1 **embarqués dans le dépôt**.
@@ -48,11 +51,19 @@ python -m http.server 8080   # puis http://localhost:8080
 | `vendor/bootstrap/`              | Bootstrap 5.3.8 (CSS + JS)                                  |
 | `vendor/bootstrap-icons/`        | Bootstrap Icons 1.13.1 (police + CSS)                       |
 | `favicon.svg`                    | Monogramme KK                                               |
-| `og-image.svg`                   | Aperçu réseaux sociaux 1200 × 630                           |
-| `portrait.jpg`                   | Portrait (800 × 800, ~120 Ko)                               |
-| `manifest.webmanifest`           | Nom, icône et couleurs de l'application installée           |
+| `apple-touch-icon.png`           | Icône iOS 180 × 180                                         |
+| `og-image.jpg`                   | Aperçu réseaux sociaux 1200 × 630                           |
+| `assets/img/`                    | Portrait optimisé (AVIF/WebP/JPEG) + icônes PWA 192/512     |
+| `cv-fr.html` / `cv-en.html`      | CV imprimable en français et en anglais (A4)                |
+| `assets/css/cv.css`              | Styles partagés des deux CV                                 |
+| `Kabamba_Kasongo_CV_FR.pdf`      | CV français téléchargeable (aussi `Kabamba_Kasongo.pdf`)    |
+| `Kabamba_Kasongo_CV_EN.pdf`      | CV anglais téléchargeable                                   |
+| `manifest.webmanifest`           | Nom, icônes et couleurs de l'application installée          |
 | `robots.txt` / `sitemap.xml`     | Référencement                                               |
 | `.nojekyll`                      | Empêche GitHub Pages de traiter le dossier avec Jekyll      |
+| `LICENSE`                        | Licence MIT                                                 |
+| `.htmlvalidate.json`             | Règles de validation HTML locales                           |
+| `.github/workflows/quality.yml`  | CI : HTML, liens, accessibilité, Lighthouse                 |
 
 ---
 
@@ -68,7 +79,8 @@ revanche, un simple *rechercher-remplacer* suffit.
 | Numéro WhatsApp         | `index.html` (lien `wa.me/…` **et** numéro affiché)            |
 | Identifiant GitHub      | `index.html` + `GITHUB_USER` dans `main.js`                    |
 | Lien LinkedIn           | `index.html`                                                    |
-| Portrait                | Remplacer `portrait.jpg` (garder un format carré)              |
+| Portrait                | Remplacer `assets/img/hero-portrait-*` (400/800 px, AVIF/WebP/JPEG) ; l'avatar de secours est `assets/img/avatar-144.*` (`portrait.jpg` et `profiles.jpg` sont les sources) |
+| CV (PDF)                | Éditer `cv-fr.html` / `cv-en.html`, puis exporter (section 8)  |
 | Statistiques (06, 29…)  | Section « À propos »                                           |
 | Badge de disponibilité  | Section Hero                                                   |
 | Délai de réponse (48 h) | Sections Hero et Contact                                       |
@@ -198,13 +210,62 @@ endroits**. Pour changer de domaine, tous sont à mettre à jour :
 | `sitemap.xml`         | `<loc>`                                                   |
 | `404.html`            | `favicon`, CSS et boutons (liens absolus)                 |
 
-> **Open Graph** : `og-image.svg` est un SVG. Twitter, Facebook et LinkedIn
-> l'acceptent de façon inégale : exportez une version **PNG 1200 × 630** et
-> remplacez l'URL dans `og:image` et `twitter:image`.
+> **Open Graph** : `og-image.jpg` est une image **JPEG 1200 × 630** (poids
+> contenu), acceptée par Twitter, Facebook et LinkedIn. Pour la régénérer,
+> modifiez `og-image.svg` puis exportez en JPEG à cette taille.
 
 ---
 
-## 8. Déploiement sur GitHub Pages
+## 8. CV
+
+Le CV existe en **deux langues** :
+
+- `cv-fr.html` — source imprimable française (A4, polices locales) ;
+- `cv-en.html` — source imprimable anglaise ;
+- `assets/css/cv.css` — styles partagés par les deux versions ;
+- `Kabamba_Kasongo_CV_FR.pdf` — PDF français (bouton « Mon CV » du hero et
+  « CV français » de la section contact) ;
+- `Kabamba_Kasongo_CV_EN.pdf` — PDF anglais (bouton « CV English ») ;
+- `Kabamba_Kasongo.pdf` — copie du PDF français, conservée pour les anciens
+  liens.
+
+Pour les modifier, éditez le HTML puis régénérez les deux PDF avec Chrome ou
+Edge en mode headless (aucune dépendance à installer) :
+
+```powershell
+& "C:\Program Files\Google\Chrome\Application\chrome.exe" `
+  --headless=new --disable-gpu --no-pdf-header-footer `
+  --print-to-pdf="Kabamba_Kasongo_CV_FR.pdf" `
+  "file:///C:/chemin/vers/kabamba-kasongo/cv-fr.html"
+
+& "C:\Program Files\Google\Chrome\Application\chrome.exe" `
+  --headless=new --disable-gpu --no-pdf-header-footer `
+  --print-to-pdf="Kabamba_Kasongo_CV_EN.pdf" `
+  "file:///C:/chemin/vers/kabamba-kasongo/cv-en.html"
+```
+
+Les deux documents sont calibrés pour tenir sur **une page A4**.
+
+---
+
+## 9. Vérifications locales
+
+La CI (`.github/workflows/quality.yml`) exécute quatre contrôles à chaque
+push : validation HTML (`html-validate`), liens morts (`lychee`),
+accessibilité (`pa11y-ci`, WCAG 2 AA) et Lighthouse. Pour les lancer en local :
+
+```bash
+npx --yes html-validate@9 index.html 404.html cv-fr.html cv-en.html
+npx --yes pa11y-ci@4 --standard WCAG2AA http://localhost:8080/
+```
+
+Les règles de `html-validate` sont dans `.htmlvalidate.json` : les règles
+purement stylistiques sont désactivées pour ne garder que les erreurs réelles.
+L'audit `pa11y` lit `.pa11yci` (WCAG 2 AA, `http://localhost:8080/`).
+
+---
+
+## 10. Déploiement sur GitHub Pages
 
 Le site n'a pas de build : **GitHub Pages publie directement le contenu de la
 branche**, sans workflow ni artefacts.
@@ -258,7 +319,7 @@ un sous-dossier.
 
 ---
 
-## 9. Accessibilité et animations
+## 11. Accessibilité et animations
 
 - Structure sémantique (`header`, `nav`, `main`, `section`, `footer`), lien
   d'évitement, `aria-current` implicite via `.is-active` sur la navigation.
@@ -275,7 +336,7 @@ un sous-dossier.
 
 ---
 
-## 10. Responsive
+## 12. Responsive
 
 Conçu et vérifié pour **375, 425, 768, 1024, 1440 et 1920 px** : menu mobile en
 panneau plein écran, grilles Bootstrap qui se replient, cibles tactiles d'au
@@ -283,18 +344,27 @@ moins 40 px, aucune barre de défilement horizontale.
 
 ---
 
-## 11. Structure
+## 13. Structure
 
 ```
 .
 ├── index.html               page unique + données structurées
 ├── 404.html                 page d'erreur
+├── cv-fr.html               CV français imprimable
+├── cv-en.html               CV anglais imprimable
+├── Kabamba_Kasongo_CV_FR.pdf  CV français téléchargeable
+├── Kabamba_Kasongo_CV_EN.pdf  CV anglais téléchargeable
+├── Kabamba_Kasongo.pdf      ancien lien → copie du CV français
 ├── robots.txt / sitemap.xml
 ├── manifest.webmanifest
-├── favicon.svg / og-image.svg / portrait.jpg
+├── favicon.svg / apple-touch-icon.png / og-image.jpg
+├── LICENSE / .htmlvalidate.json / .pa11yci
+├── .github/workflows/quality.yml
 ├── assets/
 │   ├── css/main.css         tokens, thème, composants, animations
+│   ├── css/cv.css           styles partagés des CV FR/EN
 │   ├── js/main.js           thème, menu, filtres, modale, formulaire, GitHub
+│   ├── img/                 portrait AVIF/WebP/JPEG + icônes PWA
 │   └── fonts/               3 woff2 (latin)
 └── vendor/
     ├── bootstrap/           5.3.8
@@ -306,7 +376,7 @@ moins 40 px, aucune barre de défilement horizontale.
 
 ---
 
-## 12. Ce que le projet ne contient pas
+## 14. Ce que le projet ne contient pas
 
 Par choix, et pour que ce dépôt reste auditable d'un bout à l'autre :
 
@@ -322,8 +392,6 @@ visiteur les bloque : le site reste entièrement lisible et navigable.
 
 ---
 
-## 13. Licence
+## 15. Licence
 
-Code source mis à disposition pour usage personnel. Le dépôt ne contient pas
-de fichier `LICENSE` : ajoutez-le si vous souhaitez fixer une licence explicite
-avant toute diffusion publique.
+Code source sous **licence MIT** (voir `LICENSE`).

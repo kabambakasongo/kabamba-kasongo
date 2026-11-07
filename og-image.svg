@@ -58,7 +58,7 @@
     font-size="28"
     letter-spacing="6"
     fill="#a2a8b2"
-  >FULL-STACK DEVELOPER</text>
+  >FORMATEUR ERP &amp; DÉVELOPPEUR</text>
 
   <text
     x="84"
@@ -66,7 +66,7 @@
     font-family="'Segoe UI', Arial, sans-serif"
     font-size="24"
     fill="#7c8390"
-  >Applications web · Plateformes SaaS · Solutions digitales</text>
+  >SAP S/4HANA · Odoo · Sage · Dynamics · Web &amp; SaaS</text>
 
   <g transform="translate(900 480)">
     <rect x="0" y="0" width="220" height="46" rx="23" fill="none" stroke="#ffffff" stroke-opacity="0.18" />

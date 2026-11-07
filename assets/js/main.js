@@ -21,6 +21,11 @@
     var isDark = root.classList.contains('dark');
     if (themeIcon) themeIcon.className = isDark ? 'bi bi-moon-stars' : 'bi bi-sun';
     if (themeMeta) themeMeta.setAttribute('content', isDark ? '#0A0B0D' : '#F6F6F3');
+    if (themeToggle) {
+      var label = isDark ? 'Activer le thème clair' : 'Activer le thème sombre';
+      themeToggle.setAttribute('aria-label', label);
+      themeToggle.setAttribute('title', label);
+    }
   }
 
   if (themeToggle) {
@@ -54,6 +59,8 @@
      largeur manquante que sur les navigateurs qui ne savent pas la faire. */
   var needsScrollbarFix = !('scrollbarGutter' in document.documentElement.style);
   var desktopQuery = window.matchMedia('(min-width: 992px)');
+  var pageMain = $('main');
+  var pageFooter = $('footer');
 
   function menuItems() {
     if (!mobileMenu) return [];
@@ -70,6 +77,10 @@
     navToggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
     if (navToggleIcon) navToggleIcon.className = open ? 'bi bi-x-lg' : 'bi bi-list';
     document.body.classList.toggle('nav-open', open);
+    /* Le contenu derriere l'overlay ne doit pas rester atteignable par les
+       technologies d'assistance quand le menu est ouvert. */
+    if (pageMain) pageMain.inert = open;
+    if (pageFooter) pageFooter.inert = open;
 
     if (!open) {
       document.body.style.removeProperty('--nav-scrollbar');
@@ -178,7 +189,7 @@
       var isCurrent = id !== null && link.getAttribute('href') === '#' + id;
       link.classList.toggle('is-active', isCurrent);
       if (isCurrent) {
-        link.setAttribute('aria-current', 'true');
+        link.setAttribute('aria-current', 'location');
       } else {
         link.removeAttribute('aria-current');
       }
@@ -306,21 +317,19 @@
     var words = $$('.rotator-item', rotator);
     var current = 0;
 
-    /* Le nom accessible du conteneur est fige (aria-label) : on masque les
-       mots qui ne sont pas affiches pour ne les exposer qu'une fois. */
-    words.forEach(function (word, index) {
-      word.setAttribute('aria-hidden', String(index !== current));
+    /* Un texte masque fige le nom accessible : les mots animes restent
+       decoratifs pour les technologies d'assistance. */
+    words.forEach(function (word) {
+      word.setAttribute('aria-hidden', 'true');
     });
 
     if (!prefersReducedMotion && words.length > 1) {
       setInterval(function () {
         words[current].classList.remove('is-current');
         words[current].classList.add('is-leaving');
-        words[current].setAttribute('aria-hidden', 'true');
         var previous = current;
         current = (current + 1) % words.length;
         words[current].classList.add('is-current');
-        words[current].setAttribute('aria-hidden', 'false');
 
         setTimeout(function () {
           words[previous].classList.remove('is-leaving');
@@ -420,6 +429,82 @@
 
   function renderGithubStats() {
     var headers = { Accept: 'application/vnd.github+json' };
+    var CACHE_KEY = 'kk-gh-cache';
+    var CACHE_TTL = 30 * 60 * 1000;
+
+    function render(user, repos) {
+      if (user) {
+        setText('#gh-repos', user.public_repos);
+        setText('#gh-followers', user.followers);
+        if (user.avatar_url) {
+          var avatar = $('#gh-avatar');
+          if (avatar) avatar.src = user.avatar_url;
+        }
+      }
+
+      if (!Array.isArray(repos)) return;
+
+      var stars = 0;
+      repos.forEach(function (repo) {
+        if (!repo.fork) stars += repo.stargazers_count;
+      });
+      setText('#gh-stars', stars);
+
+      var list = $('#gh-repos-list');
+      if (!list) return;
+
+      var featured = repos
+        .filter(function (repo) {
+          return !repo.fork;
+        })
+        .sort(function (a, b) {
+          return b.stargazers_count - a.stargazers_count;
+        })
+        .slice(0, 3);
+
+      if (!featured.length) return;
+
+      list.innerHTML = '';
+      featured.forEach(function (repo) {
+        var li = document.createElement('li');
+        var link = document.createElement('a');
+        link.className = 'd-flex align-items-center justify-content-between gap-3 text-decoration-none';
+        link.href = repo.html_url;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+
+        var label = document.createElement('span');
+        label.innerHTML =
+          '<span class="d-block fw-semibold" style="color: var(--ink)"></span>' +
+          '<span class="d-block text-subtle" style="font-size: 0.8rem"></span>';
+        label.children[0].textContent = repo.name;
+        label.children[1].textContent = repo.language || 'Dépôt public';
+
+        var star = document.createElement('span');
+        star.className = 'tag flex-shrink-0';
+        star.innerHTML = '<i class="bi bi-star-fill" aria-hidden="true"></i> ' + repo.stargazers_count;
+
+        link.appendChild(label);
+        link.appendChild(star);
+        li.appendChild(link);
+        list.appendChild(li);
+      });
+    }
+
+    /* Cache de session : l'API publique est limitee a 60 requetes par heure
+       et par IP ; on evite de la solliciter a chaque visite. */
+    var cached = null;
+    try {
+      cached = JSON.parse(sessionStorage.getItem(CACHE_KEY) || 'null');
+    } catch (e) {
+      cached = null;
+    }
+
+    if (cached && cached.t && Date.now() - cached.t < CACHE_TTL && cached.user) {
+      render(cached.user, cached.repos);
+      setText('#gh-status', 'Données issues de api.github.com (cache local).');
+      return;
+    }
 
     fetch('https://api.github.com/users/' + encodeURIComponent(GITHUB_USER), { headers: headers })
       .then(function (response) {
@@ -427,80 +512,35 @@
         return response.json();
       })
       .then(function (user) {
-        setText('#gh-repos', user.public_repos);
-        setText('#gh-followers', user.followers);
-        if (user.avatar_url) {
-          var avatar = $('#gh-avatar');
-          if (avatar) avatar.src = user.avatar_url;
-        }
         return fetch(
           'https://api.github.com/users/' +
             encodeURIComponent(GITHUB_USER) +
             '/repos?per_page=100&sort=updated',
           { headers: headers }
-        );
-      })
-      .then(function (response) {
-        if (!response || !response.ok) return [];
-        return response.json();
-      })
-      .then(function (repos) {
-        if (!Array.isArray(repos)) return;
-
-        var stars = 0;
-        repos.forEach(function (repo) {
-          if (!repo.fork) stars += repo.stargazers_count;
-        });
-        setText('#gh-stars', stars);
-
-        var list = $('#gh-repos-list');
-        if (!list) return;
-
-        var featured = repos
-          .filter(function (repo) {
-            return !repo.fork;
+        )
+          .then(function (response) {
+            return response && response.ok ? response.json() : [];
           })
-          .sort(function (a, b) {
-            return b.stargazers_count - a.stargazers_count;
-          })
-          .slice(0, 3);
-
-        if (!featured.length) return;
-
-        list.innerHTML = '';
-        featured.forEach(function (repo) {
-          var li = document.createElement('li');
-          var link = document.createElement('a');
-          link.className = 'd-flex align-items-center justify-content-between gap-3 text-decoration-none';
-          link.href = repo.html_url;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-
-          var label = document.createElement('span');
-          label.innerHTML =
-            '<span class="d-block fw-semibold" style="color: var(--ink)"></span>' +
-            '<span class="d-block text-subtle" style="font-size: 0.8rem"></span>';
-          label.children[0].textContent = repo.name;
-          label.children[1].textContent = repo.language || 'Dépôt public';
-
-          var star = document.createElement('span');
-          star.className = 'tag flex-shrink-0';
-          star.innerHTML = '<i class="bi bi-star-fill" aria-hidden="true"></i> ' + repo.stargazers_count;
-
-          link.appendChild(label);
-          link.appendChild(star);
-          li.appendChild(link);
-          list.appendChild(li);
-        });
+          .then(function (repos) {
+            try {
+              sessionStorage.setItem(
+                CACHE_KEY,
+                JSON.stringify({ t: Date.now(), user: user, repos: repos })
+              );
+            } catch (e) {
+              /* stockage indisponible : pas de cache */
+            }
+            render(user, repos);
+            setText('#gh-status', 'Données issues de api.github.com, sans aucune clé.');
+          });
       })
       .catch(function () {
-        setText('#gh-status', "Statistiques GitHub indisponibles pour le moment.");
-      })
-      .then(function () {
-        var status = $('#gh-status');
-        if (status && status.textContent.indexOf('Chargement') !== -1) {
-          status.textContent = 'Données issues de api.github.com, sans aucune clé.';
+        if (cached && cached.user) {
+          render(cached.user, cached.repos);
+          setText('#gh-status', 'Statistiques GitHub servies depuis le cache local.');
+          return;
         }
+        setText('#gh-status', 'Statistiques GitHub indisponibles pour le moment.');
       });
   }
 
@@ -517,7 +557,10 @@
   function showError(field, message) {
     var input = $('#contact-' + field);
     var error = $('#contact-' + field + '-error');
-    if (input) input.classList.toggle('is-invalid', Boolean(message));
+    if (input) {
+      input.classList.toggle('is-invalid', Boolean(message));
+      input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    }
     if (!error) return;
     error.textContent = message || '';
     error.classList.toggle('d-none', !message);
@@ -635,6 +678,27 @@
         });
     });
   }
+
+  /* ------------------------------------------------- Repli image manquante */
+
+  $$('img[data-fallback]').forEach(function (img) {
+    img.addEventListener('error', function () {
+      var span = document.createElement('span');
+      span.className = 'd-grid place-items-center w-100';
+      span.style.aspectRatio = '1 / 1';
+      span.style.fontFamily = 'var(--font-display)';
+      span.style.fontSize = '3rem';
+      span.style.fontWeight = '700';
+      span.style.color = 'var(--brand)';
+      span.textContent = img.getAttribute('data-fallback') || '';
+      img.replaceWith(span);
+    });
+  });
+
+  /* ---------------------------------------------------------------- Année */
+
+  var yearEl = $('#year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   /* ------------------------------------------------------- Copy & partage */
 
