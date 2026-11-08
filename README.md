@@ -11,8 +11,8 @@ Bootstrap 5.3.8 et Bootstrap Icons 1.13.1 **embarqués dans le dépôt**.
 
 - **Aucune dépendance distante** (CDN, Google Fonts, frameworks externes) :
   polices, icônes et bibliothèques sont dans le dépôt
-- **Aucune étape de build** : pas de `npm install`, pas de bundler, pas de
-  compilation
+- **Aucune étape de build** : pas de bundler, pas de compilation. Node.js
+  n'est nécessaire que pour lancer les tests navigateur.
 - **Deux requêtes externes facultatives**, déjà prévues et tolérantes à un
   blocage : l'API GitHub publique et l'avatar hébergé par GitHub
 - **Aucun backend, aucune base de données, aucune clé secrète, aucun cookie**
@@ -22,7 +22,7 @@ Bootstrap 5.3.8 et Bootstrap Icons 1.13.1 **embarqués dans le dépôt**.
 
 ## 1. Démarrage
 
-Il n'y a rien à installer. Deux options :
+Pour consulter le site, il n'y a rien à installer. Deux options :
 
 ```bash
 # 1. Ouvrir directement le fichier
@@ -46,7 +46,7 @@ python -m http.server 8080   # puis http://localhost:8080
 | `index.html`                     | La page unique : contenu, métadonnées, données structurées  |
 | `404.html`                       | Page d'erreur 404 (liens absolus : fonctionne à toute URL)  |
 | `assets/css/main.css`            | Design tokens, thème clair/sombre, composants, animations   |
-| `assets/js/main.js`              | Comportements : thème, menu, filtres, modale, formulaire     |
+| `assets/js/`                     | Scripts séparés par responsabilité, sans bundler            |
 | `assets/fonts/`                  | Space Grotesk, Inter, JetBrains Mono (sous-ensemble latin)   |
 | `vendor/bootstrap/`              | Bootstrap 5.3.8 (CSS + JS)                                  |
 | `vendor/bootstrap-icons/`        | Bootstrap Icons 1.13.1 (police + CSS)                       |
@@ -69,15 +69,15 @@ python -m http.server 8080   # puis http://localhost:8080
 
 ## 3. Mes informations
 
-Il n'y a **pas de fichier de configuration** : tout est dans `index.html` (et
-`assets/js/main.js` pour deux valeurs). C'est le prix de la simplicité — en
-revanche, un simple *rechercher-remplacer* suffit.
+Il n'y a pas de fichier de configuration à construire : les coordonnées
+utilisées par le JavaScript sont déclarées dans `index.html`. Un contrôle
+automatique vérifie aussi la cohérence des adresses et URLs publiques.
 
 | Information             | Où la remplacer                                                |
 | ----------------------- | -------------------------------------------------------------- |
-| Adresse e-mail          | `index.html` + `CONTACT_EMAIL` et `data-copy` dans `main.js`   |
+| Adresse e-mail          | `index.html` (`data-contact-email`, liens e-mail et `data-copy`) |
 | Numéro WhatsApp         | `index.html` (lien `wa.me/…` **et** numéro affiché)            |
-| Identifiant GitHub      | `index.html` + `GITHUB_USER` dans `main.js`                    |
+| Identifiant GitHub      | `index.html` (`data-github-user` et liens de profil)            |
 | Lien LinkedIn           | `index.html`                                                    |
 | Portrait                | Remplacer `assets/img/hero-portrait-*` (400/800 px, AVIF/WebP/JPEG) ; l'avatar de secours est `assets/img/avatar-144.*` (`portrait.jpg` et `profiles.jpg` sont les sources) |
 | CV (PDF)                | Éditer `cv-fr.html` / `cv-en.html`, puis exporter (section 8)  |
@@ -89,7 +89,7 @@ Vérifier qu'un remplacement a bien été appliqué partout :
 
 ```bash
 # sur Windows PowerShell
-Select-String -Path index.html, assets/js/main.js -Pattern "ledouxkabamba135"
+npm run check:config
 ```
 
 **Ne jamais inventer de coordonnées.** Si une information n'est pas réelle,
@@ -111,7 +111,7 @@ Un projet se décrit à **trois endroits** de `index.html` :
          <span class="monogram-cover">MP</span>
        </div>
        <div class="p-4 d-flex flex-column h-100">
-         <h3 class="font-display fs-5 fw-semibold mb-0" style="color: var(--ink)">Mon Projet</h3>
+                <h3 class="font-display fs-5 fw-semibold mb-0 text-ink">Mon Projet</h3>
          <p class="text-muted-2 mb-3" style="font-size: 0.88rem">Phrase courte affichée sur la carte</p>
          <div class="d-flex flex-wrap gap-2 mt-auto">
            <span class="tag">Python</span><span class="tag">Django</span>
@@ -125,7 +125,7 @@ Un projet se décrit à **trois endroits** de `index.html` :
    chiffres clés, fonctionnalités, technologies. Le `slug` du `<template>`
    doit correspondre au `data-slug` de la carte.
 
-3. **La phrase de sous-titre** dans l'objet `taglines` de `main.js`
+3. **La phrase de sous-titre** dans l'objet `taglines` de `assets/js/projects.js`
    (utilisée dans l'en-tête de la modale).
 
 Les filtres de la barre de filtres correspondent aux valeurs listées dans
@@ -250,9 +250,24 @@ Les deux documents sont calibrés pour tenir sur **une page A4**.
 
 ## 9. Vérifications locales
 
-La CI (`.github/workflows/quality.yml`) exécute quatre contrôles à chaque
-push : validation HTML (`html-validate`), liens morts (`lychee`),
-accessibilité (`pa11y-ci`, WCAG 2 AA) et Lighthouse. Pour les lancer en local :
+La CI (`.github/workflows/quality.yml`) exécute cinq contrôles à chaque
+push : validation HTML (`html-validate`), tests navigateur (Playwright),
+liens morts (`lychee`), accessibilité (`pa11y-ci`, WCAG 2 AA) et Lighthouse.
+Les tests navigateur couvrent le thème, le menu mobile, les filtres et détails
+de projets, ainsi que la validation du formulaire. Ils interceptent l'API
+GitHub : aucun appel externe n'est nécessaire pour les exécuter.
+
+Pour lancer les tests navigateur en local (Node.js requis) :
+
+```bash
+npm ci
+npx playwright install chromium
+npm run check:config
+npm run check:js
+npm test
+```
+
+Pour lancer les contrôles historiques en local :
 
 ```bash
 npx --yes html-validate@9 index.html 404.html cv-fr.html cv-en.html
@@ -360,10 +375,12 @@ moins 40 px, aucune barre de défilement horizontale.
 ├── favicon.svg / apple-touch-icon.png / og-image.jpg
 ├── LICENSE / .htmlvalidate.json / .pa11yci
 ├── .github/workflows/quality.yml
+├── package.json / package-lock.json  tests uniquement, aucun build
+├── tests/                    serveur local et tests navigateur Playwright
 ├── assets/
 │   ├── css/main.css         tokens, thème, composants, animations
 │   ├── css/cv.css           styles partagés des CV FR/EN
-│   ├── js/main.js           thème, menu, filtres, modale, formulaire, GitHub
+│   ├── js/                  modules thème, navigation, projets, contact, GitHub
 │   ├── img/                 portrait AVIF/WebP/JPEG + icônes PWA
 │   └── fonts/               3 woff2 (latin)
 └── vendor/
@@ -380,7 +397,8 @@ moins 40 px, aucune barre de défilement horizontale.
 
 Par choix, et pour que ce dépôt reste auditable d'un bout à l'autre :
 
-- ni build, ni bundler, ni `node_modules` ;
+- ni build, ni bundler, ni dépendance Node.js à l'exécution ;
+- `node_modules` ne sert qu'aux tests, jamais au site publié ;
 - ni dépendance distante (CDN, Google Fonts, Frameworks externes) ;
 - ni backend, ni base de données, ni secret ;
 - ni traqueur, ni cookie, ni service d'analyse d'audience.

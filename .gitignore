@@ -19,3 +19,5 @@ desktop.ini
 
 # Outils de verification lances a la demande (npx)
 node_modules/
+playwright-report/
+test-results/

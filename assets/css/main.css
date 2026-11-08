@@ -213,6 +213,12 @@ p {
 .text-muted-2 {
   color: var(--ink-muted) !important;
 }
+.text-ink {
+  color: var(--ink) !important;
+}
+.text-compact {
+  font-size: 0.87rem !important;
+}
 .text-subtle {
   color: var(--ink-subtle) !important;
 }

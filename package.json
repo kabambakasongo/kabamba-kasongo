@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "check:config": "node tests/check-config.js",
+    "check:js": "node tests/check-js.js",
+    "test": "playwright test --config tests/playwright.config.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0"
+  }
+}

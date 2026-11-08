@@ -21,6 +21,21 @@ jobs:
       - name: html-validate
         run: npx --yes html-validate@9 index.html 404.html cv-fr.html cv-en.html
 
+  browser-tests:
+    name: Tests navigateur
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run check:config
+      - run: npm run check:js
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+
   links:
     name: Liens
     runs-on: ubuntu-latest
