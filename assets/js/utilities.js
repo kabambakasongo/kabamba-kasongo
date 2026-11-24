@@ -3,6 +3,8 @@
 
   var $ = window.KK.$;
   var $$ = window.KK.$$;
+  var t = window.KK.i18n.t;
+  var f = window.KK.i18n.f;
 
   $$('img[data-fallback]').forEach(function (img) {
     img.addEventListener('error', function () {
@@ -33,10 +35,10 @@
 
       var done = function () {
         if (icon) icon.className = 'bi bi-check2';
-        copyBtn.lastChild.textContent = ' Adresse copiée';
+        copyBtn.lastChild.textContent = t('copied');
         setTimeout(function () {
           if (icon) icon.className = 'bi bi-clipboard';
-          copyBtn.lastChild.textContent = " Copier l'adresse e-mail";
+          copyBtn.lastChild.textContent = t('copyEmail');
         }, 2200);
       };
 
@@ -54,7 +56,11 @@
           document.execCommand('copy');
           done();
         } catch (e) {
-          setStatus('error', 'Copie impossible : ' + value);
+          var status = $('#contact-status');
+          if (status) {
+            status.style.color = '#f43f5e';
+            status.textContent = f('copyFailed', value);
+          }
         }
         document.body.removeChild(helper);
       }
@@ -66,7 +72,7 @@
     shareBtn.addEventListener('click', function () {
       var data = {
         title: document.title,
-        text: 'Portfolio de KABAMBA KASONGO, développeur Full-Stack.',
+        text: t('shareText'),
         url: window.location.href,
       };
 
@@ -78,7 +84,7 @@
       if (navigator.clipboard && window.isSecureContext) {
         navigator.clipboard.writeText(data.url);
       }
-      shareBtn.title = 'Lien du site copié';
+      shareBtn.title = t('shareCopied');
     });
   }
 })();

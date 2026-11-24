@@ -29,7 +29,10 @@
     menuOpen = open;
     mobileMenu.setAttribute('data-open', String(open));
     navToggle.setAttribute('aria-expanded', String(open));
-    navToggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    navToggle.setAttribute(
+      'aria-label',
+      open ? window.KK.i18n.t('menuClose') : window.KK.i18n.t('menuOpen')
+    );
     if (navToggleIcon) navToggleIcon.className = open ? 'bi bi-x-lg' : 'bi bi-list';
     document.body.classList.toggle('nav-open', open);
     /* Le contenu derriere l'overlay ne doit pas rester atteignable par les

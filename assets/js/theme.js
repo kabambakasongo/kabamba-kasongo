@@ -13,7 +13,9 @@
     if (themeIcon) themeIcon.className = isDark ? 'bi bi-moon-stars' : 'bi bi-sun';
     if (themeMeta) themeMeta.setAttribute('content', isDark ? '#0A0B0D' : '#F6F6F3');
     if (themeToggle) {
-      var label = isDark ? 'Activer le thème clair' : 'Activer le thème sombre';
+      var label = isDark
+        ? window.KK.i18n.t('themeLight')
+        : window.KK.i18n.t('themeDark');
       themeToggle.setAttribute('aria-label', label);
       themeToggle.setAttribute('title', label);
     }

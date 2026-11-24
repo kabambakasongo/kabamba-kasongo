@@ -2,6 +2,8 @@
   'use strict';
 
   var $ = window.KK.$;
+  var t = window.KK.i18n.t;
+  var f = window.KK.i18n.f;
 
   var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -51,19 +53,19 @@
 
       var hasError = false;
       if (name.length < 2) {
-        showError('name', 'Indiquez votre nom (2 caractères minimum).');
+        showError('name', t('contactNameError'));
         hasError = true;
       }
       if (!EMAIL_PATTERN.test(email)) {
-        showError('email', 'Adresse e-mail invalide.');
+        showError('email', t('contactEmailError'));
         hasError = true;
       }
       if (message.length < 20) {
-        showError('message', 'Décrivez votre besoin en 20 caractères minimum.');
+        showError('message', t('contactMessageError'));
         hasError = true;
       }
       if (hasError) {
-        setStatus('error', 'Corrigez les champs signalés ci-dessus.');
+        setStatus('error', t('contactErrors'));
         return;
       }
 
@@ -72,9 +74,8 @@
       var accessKey = form.getAttribute('data-access-key') || '';
 
       if (provider === 'none') {
-        var subjectLine = subject || 'Demande via le portfolio';
-        var body =
-          'Nom : ' + name + '\nE-mail : ' + email + '\n\n' + message;
+        var subjectLine = subject || t('contactSubject');
+        var body = f('contactBody', name, email, message);
         window.location.href =
           'mailto:' +
           (contactEmail || '') +
@@ -82,14 +83,14 @@
           encodeURIComponent(subjectLine) +
           '&body=' +
           encodeURIComponent(body);
-        setStatus('info', "Votre logiciel de messagerie s'ouvre avec le message prêt à partir.");
+        setStatus('info', t('mailerOpened'));
         return;
       }
 
       var submit = $('#contact-submit');
       var label = $('#contact-submit-label');
       if (submit) submit.disabled = true;
-      if (label) label.textContent = 'Envoi...';
+      if (label) label.textContent = t('sending');
 
       var payload = { name: name, email: email, subject: subject, message: message };
       var request;
@@ -108,9 +109,9 @@
           body: JSON.stringify(payload),
         });
       } else {
-        setStatus('error', "Aucun service d'envoi configuré. Écrivez-moi directement par e-mail.");
+        setStatus('error', t('noProvider'));
         if (submit) submit.disabled = false;
-        if (label) label.textContent = 'Envoyer le message';
+        if (label) label.textContent = t('sendMessage');
         return;
       }
 
@@ -118,19 +119,14 @@
         .then(function (response) {
           if (!response.ok) throw new Error('HTTP ' + response.status);
           form.reset();
-          setStatus('success', 'Merci ! Votre message a bien été envoyé, je vous réponds sous 48 h.');
+          setStatus('success', t('sent'));
         })
         .catch(function () {
-          setStatus(
-            'error',
-            "L'envoi a échoué. Vous pouvez m'écrire directement à " +
-              (contactEmail || 'mon adresse e-mail') +
-              ' ou sur WhatsApp.'
-          );
+          setStatus('error', f('sendFailed', contactEmail || t('contactEmailFallback')));
         })
         .then(function () {
           if (submit) submit.disabled = false;
-          if (label) label.textContent = 'Envoyer le message';
+          if (label) label.textContent = t('sendMessage');
         });
     });
   }

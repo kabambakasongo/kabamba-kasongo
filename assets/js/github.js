@@ -62,7 +62,7 @@
           '<span class="d-block fw-semibold" style="color: var(--ink)"></span>' +
           '<span class="d-block text-subtle" style="font-size: 0.8rem"></span>';
         label.children[0].textContent = repo.name;
-        label.children[1].textContent = repo.language || 'Dépôt public';
+        label.children[1].textContent = repo.language || window.KK.i18n.t('ghPublicRepo');
 
         var star = document.createElement('span');
         star.className = 'tag flex-shrink-0';
@@ -86,7 +86,7 @@
 
     if (cached && cached.t && Date.now() - cached.t < CACHE_TTL && cached.user) {
       render(cached.user, cached.repos);
-      setText('#gh-status', 'Données issues de api.github.com (cache local).');
+      setText('#gh-status', window.KK.i18n.t('ghCached'));
       return;
     }
 
@@ -115,16 +115,16 @@
               /* stockage indisponible : pas de cache */
             }
             render(user, repos);
-            setText('#gh-status', 'Données issues de api.github.com, sans aucune clé.');
+            setText('#gh-status', window.KK.i18n.t('ghLive'));
           });
       })
       .catch(function () {
         if (cached && cached.user) {
           render(cached.user, cached.repos);
-          setText('#gh-status', 'Statistiques GitHub servies depuis le cache local.');
+          setText('#gh-status', window.KK.i18n.t('ghCacheFallback'));
           return;
         }
-        setText('#gh-status', 'Statistiques GitHub indisponibles pour le moment.');
+        setText('#gh-status', window.KK.i18n.t('ghUnavailable'));
       });
   }
 

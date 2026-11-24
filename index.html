@@ -17,6 +17,9 @@
     content="KABAMBA KASONGO, formateur ERP, SAP S/4HANA, tous les modules SAP, Odoo, Sage, Microsoft Dynamics, calcul de la paie, droit social, bureautique, développeur Full-Stack, React, TypeScript, Django, Python, SaaS, Kolwezi, RDC, portfolio" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://kabambakasongo.github.io/kabamba-kasongo/" />
+  <link rel="alternate" hreflang="fr" href="https://kabambakasongo.github.io/kabamba-kasongo/" />
+  <link rel="alternate" hreflang="en" href="https://kabambakasongo.github.io/kabamba-kasongo/index-en.html" />
+  <link rel="alternate" hreflang="x-default" href="https://kabambakasongo.github.io/kabamba-kasongo/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -197,6 +200,13 @@
         </div>
 
         <div class="site-header__actions">
+          <div class="lang-switch" role="group" aria-label="Langue / Language">
+            <a href="index.html" class="lang-switch__link is-active" lang="fr" hreflang="fr" aria-current="true"
+              title="Français">FR</a>
+            <span class="lang-switch__sep" aria-hidden="true">/</span>
+            <a href="index-en.html" class="lang-switch__link" lang="en" hreflang="en" title="English">EN</a>
+          </div>
+
           <button type="button" class="icon-btn" id="theme-toggle" aria-label="Changer de thème"
             title="Changer de thème">
             <i class="bi bi-moon-stars" data-theme-icon aria-hidden="true"></i>
@@ -237,6 +247,15 @@
         </ul>
 
         <div class="menu-mobile__foot">
+          <div class="menu-mobile__lang">
+            <span class="text-subtle">Langue</span>
+            <div class="lang-switch" role="group" aria-label="Langue / Language">
+              <a href="index.html" class="lang-switch__link is-active" lang="fr" hreflang="fr" aria-current="true"
+                title="Français">FR</a>
+              <span class="lang-switch__sep" aria-hidden="true">/</span>
+              <a href="index-en.html" class="lang-switch__link" lang="en" hreflang="en" title="English">EN</a>
+            </div>
+          </div>
           <a href="mailto:ledouxkabamba135@gmail.com" class="btn btn-primary w-100">
             Me contacter <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
           </a>
@@ -2044,6 +2063,7 @@
 
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/dom.js"></script>
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/theme.js"></script>
   <script src="assets/js/navigation.js"></script>
   <script src="assets/js/effects.js"></script>

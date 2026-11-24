@@ -5,7 +5,8 @@ const path = require('node:path');
 const root = path.resolve(__dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const index = read('index.html');
-const htmlFiles = ['index.html', 'cv-fr.html', 'cv-en.html'];
+const indexEn = read('index-en.html');
+const htmlFiles = ['index.html', 'index-en.html', 'cv-fr.html', 'cv-en.html'];
 
 const contactEmail = index.match(/data-contact-email="([^"]+)"/);
 assert.ok(contactEmail, 'index.html must define data-contact-email');
@@ -36,7 +37,38 @@ const canonical = index.match(/<link rel="canonical" href="([^"]+)"/);
 assert.ok(canonical, 'index.html must define a canonical URL');
 const canonicalUrl = new URL(canonical[1]);
 
-const siteFiles = ['index.html', '404.html', 'robots.txt', 'sitemap.xml'];
+const languagePages = [
+  { file: 'index.html', lang: 'fr', url: canonical[1] },
+  {
+    file: 'index-en.html',
+    lang: 'en',
+    url: 'https://kabambakasongo.github.io/kabamba-kasongo/index-en.html',
+  },
+];
+
+languagePages.forEach(function (page) {
+  const html = page.file === 'index.html' ? index : indexEn;
+  assert.ok(
+    html.includes('<html lang="' + page.lang + '"'),
+    page.file + ' must declare its language'
+  );
+  assert.ok(
+    html.includes('<link rel="canonical" href="' + page.url + '"'),
+    page.file + ' must define its own canonical URL'
+  );
+  ['fr', 'en', 'x-default'].forEach(function (hreflang) {
+    assert.ok(
+      html.includes('hreflang="' + hreflang + '"'),
+      page.file + ' must declare the ' + hreflang + ' alternate'
+    );
+  });
+  assert.ok(
+    html.includes('class="lang-switch'),
+    page.file + ' must expose the language switcher'
+  );
+});
+
+const siteFiles = ['index.html', 'index-en.html', '404.html', 'robots.txt', 'sitemap.xml'];
 const siteUrls = siteFiles.flatMap((file) =>
   [...read(file).matchAll(/https?:\/\/[^"'\s<]*/g)].map((match) => ({
     value: match[0],

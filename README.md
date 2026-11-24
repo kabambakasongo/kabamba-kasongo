@@ -6,6 +6,10 @@ présente les deux activités : formations aux ERP (SAP S/4HANA, Odoo, Sage,
 Microsoft Dynamics, paie et droit social) et conception d'applications web,
 SaaS et de gestion.
 
+Le portfolio est **bilingue français / anglais** : la racine sert la version
+française, `index-en.html` la version anglaise, avec un sélecteur explicite
+(`FR | EN`) dans l'en-tête et le menu mobile. Aucune redirection automatique.
+
 Site **100 % statique** : HTML, CSS et JavaScript natifs, complétés par
 Bootstrap 5.3.8 et Bootstrap Icons 1.13.1 **embarqués dans le dépôt**.
 
@@ -29,7 +33,7 @@ Pour consulter le site, il n'y a rien à installer. Deux options :
 start index.html
 
 # 2. Servir le dossier (recommandé : requis pour l'API GitHub)
-python -m http.server 8080   # puis http://localhost:8080
+python -m http.server 8080   # puis http://localhost:8080/ ou /index-en.html
 ```
 
 > Un serveur local est préférable à `file://` : le navigateur bloque les
@@ -43,10 +47,12 @@ python -m http.server 8080   # puis http://localhost:8080
 
 | Fichier / dossier                | Rôle                                                        |
 | -------------------------------- | ----------------------------------------------------------- |
-| `index.html`                     | La page unique : contenu, métadonnées, données structurées  |
+| `index.html`                     | Page d'accueil française, métadonnées et données structurées |
+| `index-en.html`                  | Page d'accueil anglaise, même structure et mêmes identifiants |
 | `404.html`                       | Page d'erreur 404 (liens absolus : fonctionne à toute URL)  |
 | `assets/css/main.css`            | Design tokens, thème clair/sombre, composants, animations   |
 | `assets/js/`                     | Scripts séparés par responsabilité, sans bundler            |
+| `assets/js/i18n.js`              | Dictionnaires FR/EN et API `KK.i18n.t()` / `KK.i18n.f()`     |
 | `assets/fonts/`                  | Space Grotesk, Inter, JetBrains Mono (sous-ensemble latin)   |
 | `vendor/bootstrap/`              | Bootstrap 5.3.8 (CSS + JS)                                  |
 | `vendor/bootstrap-icons/`        | Bootstrap Icons 1.13.1 (police + CSS)                       |
@@ -70,14 +76,15 @@ python -m http.server 8080   # puis http://localhost:8080
 ## 3. Mes informations
 
 Il n'y a pas de fichier de configuration à construire : les coordonnées
-utilisées par le JavaScript sont déclarées dans `index.html`. Un contrôle
-automatique vérifie aussi la cohérence des adresses et URLs publiques.
+utilisées par le JavaScript sont déclarées dans `index.html` et reproduites
+dans `index-en.html`. Un contrôle automatique vérifie aussi la cohérence des
+adresses et URLs publiques sur les deux pages.
 
 | Information             | Où la remplacer                                                |
 | ----------------------- | -------------------------------------------------------------- |
-| Adresse e-mail          | `index.html` (`data-contact-email`, liens e-mail et `data-copy`) |
-| Numéro WhatsApp         | `index.html` (lien `wa.me/…` **et** numéro affiché)            |
-| Identifiant GitHub      | `index.html` (`data-github-user` et liens de profil)            |
+| Adresse e-mail          | les deux index (`data-contact-email`, e-mails et `data-copy`)   |
+| Numéro WhatsApp         | les deux index (lien `wa.me/…` **et** numéro affiché)           |
+| Identifiant GitHub      | les deux index (`data-github-user` et liens de profil)          |
 | Lien LinkedIn           | `index.html`                                                    |
 | Portrait                | Remplacer `assets/img/hero-portrait-*` (400/800 px, AVIF/WebP/JPEG) ; l'avatar de secours est `assets/img/avatar-144.*` (`portrait.jpg` et `profiles.jpg` sont les sources) |
 | CV (PDF)                | Éditer `cv-fr.html` / `cv-en.html`, puis exporter (section 8)  |
@@ -99,7 +106,8 @@ retirez simplement le bloc correspondant : aucun lien mort ne subsiste.
 
 ## 4. Ajouter ou modifier un projet
 
-Un projet se décrit à **trois endroits** de `index.html` :
+Un projet se décrit dans **les deux pages** (`index.html` et `index-en.html`),
+à trois endroits :
 
 1. **La carte** dans `#project-grid` :
 
@@ -125,8 +133,8 @@ Un projet se décrit à **trois endroits** de `index.html` :
    chiffres clés, fonctionnalités, technologies. Le `slug` du `<template>`
    doit correspondre au `data-slug` de la carte.
 
-3. **La phrase de sous-titre** dans l'objet `taglines` de `assets/js/projects.js`
-   (utilisée dans l'en-tête de la modale).
+3. **Les deux phrases de sous-titre** `tagline_<slug>` de `assets/js/i18n.js`
+   (utilisées dans l'en-tête de la modale, en français et en anglais).
 
 Les filtres de la barre de filtres correspondent aux valeurs listées dans
 `data-categories`. Pour **retirer** un projet, supprimer les points 1 et 2 ;
@@ -191,23 +199,26 @@ Tout est centralisé dans `assets/css/main.css` :
 - **Animations** : keyframes en section 6 de `main.css`.
 
 Le mode sombre est appliqué **avant le premier rendu** par un script en tête
-de `index.html` : aucun flash au chargement. Le choix est mémorisé dans
+de chaque index : aucun flash au chargement. Le choix est mémorisé dans
 `localStorage` (`kk-theme`) et la balise `theme-color` suit.
 
 ---
 
 ## 7. SEO
 
-`index.html` porte le titre, la description, les mots-clés, Open Graph,
-Twitter Card et une entité Schema.org `Person`. Le contenu est 100 % statique :
-aucune URL n'est devinée, mais l'URL publique est écrite en dur à **cinq
-endroits**. Pour changer de domaine, tous sont à mettre à jour :
+Chaque page d'accueil porte son titre, sa description, ses mots-clés, Open
+Graph, Twitter Card et une entité Schema.org `Person`. Les deux pages
+déclarent aussi leur `canonical`, leurs liens `hreflang="fr|en|x-default"` et
+leur sélecteur de langue. Le contenu est 100 % statique : aucune URL n'est
+devinée, mais l'URL publique est écrite en dur. Pour changer de domaine, mettre
+à jour :
 
 | Fichier               | Ce qu'il contient                                        |
 | --------------------- | --------------------------------------------------------- |
-| `index.html`          | `canonical`, `og:url`, `og:image`, `twitter:image`, JSON-LD |
+| `index.html`          | `canonical`, `hreflang`, `og:url`, JSON-LD                 |
+| `index-en.html`       | `canonical`, `hreflang`, `og:url`, JSON-LD                 |
 | `robots.txt`          | `Sitemap:`                                               |
-| `sitemap.xml`         | `<loc>`                                                   |
+| `sitemap.xml`         | les deux `<loc>`                                          |
 | `404.html`            | `favicon`, CSS et boutons (liens absolus)                 |
 
 > **Open Graph** : `og-image.jpg` est une image **JPEG 1200 × 630** (poids
@@ -254,8 +265,9 @@ La CI (`.github/workflows/quality.yml`) exécute cinq contrôles à chaque
 push : validation HTML (`html-validate`), tests navigateur (Playwright),
 liens morts (`lychee`), accessibilité (`pa11y-ci`, WCAG 2 AA) et Lighthouse.
 Les tests navigateur couvrent le thème, le menu mobile, les filtres et détails
-de projets, ainsi que la validation du formulaire. Ils interceptent l'API
-GitHub : aucun appel externe n'est nécessaire pour les exécuter.
+de projets, la validation du formulaire et le sélecteur de langue, sur les deux
+versions FR et EN. Ils interceptent l'API GitHub : aucun appel externe n'est
+nécessaire pour les exécuter.
 
 Pour lancer les tests navigateur en local (Node.js requis) :
 
@@ -270,13 +282,13 @@ npm test
 Pour lancer les contrôles historiques en local :
 
 ```bash
-npx --yes html-validate@9 index.html 404.html cv-fr.html cv-en.html
-npx --yes pa11y-ci@4 --standard WCAG2AA http://localhost:8080/
+npx --yes html-validate@9 index.html index-en.html 404.html cv-fr.html cv-en.html
+npx --yes pa11y-ci@4 --config .pa11yci
 ```
 
 Les règles de `html-validate` sont dans `.htmlvalidate.json` : les règles
 purement stylistiques sont désactivées pour ne garder que les erreurs réelles.
-L'audit `pa11y` lit `.pa11yci` (WCAG 2 AA, `http://localhost:8080/`).
+L'audit `pa11y` lit `.pa11yci` (WCAG 2 AA, pages FR et EN).
 
 ---
 
@@ -363,7 +375,8 @@ moins 40 px, aucune barre de défilement horizontale.
 
 ```
 .
-├── index.html               page unique + données structurées
+├── index.html               accueil FR + données structurées
+├── index-en.html            accueil EN + données structurées
 ├── 404.html                 page d'erreur
 ├── cv-fr.html               CV français imprimable
 ├── cv-en.html               CV anglais imprimable
@@ -380,7 +393,7 @@ moins 40 px, aucune barre de défilement horizontale.
 ├── assets/
 │   ├── css/main.css         tokens, thème, composants, animations
 │   ├── css/cv.css           styles partagés des CV FR/EN
-│   ├── js/                  modules thème, navigation, projets, contact, GitHub
+│   ├── js/                  modules i18n, thème, navigation, projets, contact, GitHub
 │   ├── img/                 portrait AVIF/WebP/JPEG + icônes PWA
 │   └── fonts/               3 woff2 (latin)
 └── vendor/
@@ -388,8 +401,9 @@ moins 40 px, aucune barre de défilement horizontale.
     └── bootstrap-icons/     1.13.1
 ```
 
-> L'application est une **page unique** : pas de routeur, pas d'historique
-> parasite, des liens d'ancrage partageables (`/#contact`).
+> Chaque langue est une **page statique autonome** : pas de routeur, pas
+> d'historique parasite, des liens d'ancrage partageables (`/#contact` et
+> `/index-en.html#contact`).
 
 ---
 

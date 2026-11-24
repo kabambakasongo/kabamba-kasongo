@@ -665,6 +665,62 @@ html:not(.js) .nav-progress {
   transform: translate(2px, -2px);
 }
 
+/* --- Selecteur de langue -------------------------------------------------- */
+
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1rem;
+  flex-shrink: 0;
+  padding: 0.2rem 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background-color: color-mix(in oklab, var(--surface-2) 70%, transparent);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+.lang-switch__link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.3rem;
+  border-radius: 999px;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.lang-switch__link:hover,
+.lang-switch__link:focus-visible {
+  color: var(--brand);
+  background-color: var(--brand-soft);
+}
+
+.lang-switch__link.is-active {
+  color: var(--brand-contrast);
+  background-color: var(--brand);
+}
+
+.lang-switch__sep {
+  color: var(--ink-muted);
+  opacity: 0.6;
+}
+
+@media (max-width: 991.98px) {
+  .site-header__actions .lang-switch {
+    display: none;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1279.98px) {
+  .header-cta {
+    display: none;
+  }
+}
+
 #theme-toggle [data-theme-icon] {
   display: block;
   transition:
@@ -861,6 +917,15 @@ html:not(.js) .nav-progress {
   opacity: 1;
   transform: none;
   transition-delay: 0.24s;
+}
+
+.menu-mobile__lang {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+  font-size: 0.78rem;
 }
 
 .menu-mobile__meta {

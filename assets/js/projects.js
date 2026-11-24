@@ -40,24 +40,13 @@
   var modalTagline = $('#project-modal-tagline');
   var modalBody = $('#project-modal-body');
 
-  var taglines = {
-    schoolflow: 'Plateforme SaaS de gestion de complexes scolaires',
-    majifuzo: 'Application desktop de gestion scolaire',
-    businessflow: "Solution de gestion d'activités commerciales",
-    peguywax: "Logiciel de gestion d'atelier de couture",
-    'educ-me': 'Plateforme éducative numérique',
-    englishpro: 'Plateforme de formation professionnelle en anglais',
-    manono: "Site corporate multilingue d'une société minière",
-    lcs: "Site corporate multilingue d'une fonderie de cuivre",
-  };
-
   function openProject(slug, trigger) {
     var template = document.getElementById('tpl-' + slug);
     if (!template || !projectModal || !modalBody) return;
 
     var heading = trigger ? trigger.querySelector('h3') : null;
     modalTitle.textContent = (heading ? heading.textContent.trim() : '') || slug;
-    modalTagline.textContent = taglines[slug] || '';
+    modalTagline.textContent = slug ? window.KK.i18n.t('tagline_' + slug) || '' : '';
     modalBody.innerHTML = '';
     modalBody.appendChild(template.content.cloneNode(true));
 
